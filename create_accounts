@@ -1,0 +1,40 @@
+#!/bin/bash
+
+## Written by Sean Burns
+## Date: 2018-08-18
+## Purpose: Batch create user accounts and directories on Linux server
+## Setup temporary passwords
+
+# Assign user list to variable
+# Each line in the file has one username, single column, no spaces
+userfile="user_list_file.csv"
+
+# Create users, one line at a time
+while read i ; do
+	useradd -mU "$i"
+done<"$userfile"
+
+# Get total count of users. Assign number to variable
+# use redirect with 'wc' to just get the count/number
+totalusers=$(wc -l < "$userfile")
+
+# Create unique temporary passwords for each username
+# save to a file called 'userpw'
+# remove colons with sed and, if they exist, replace with some random character
+# e.g., the letter L
+# because chpasswd uses colons as a file separator
+for i in $(seq 1 "$totalusers") ; do
+  pwgen -cny 12 | cut -d " " -f 1 >> userpw
+  sed -i 's/:/L/g' userpw
+done
+
+# Join usernames to temporary passwords
+paste -d ":" "$userfile" userpw > pwuser
+
+# Update passwords for the users
+chpasswd < pwuser
+
+# Force users to change passwords when they log in for the first time
+while read i ; do
+	passwd -e "$i"
+done<"$userfile"
