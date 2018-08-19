@@ -38,3 +38,11 @@ chpasswd < pwuser
 while read i ; do
 	passwd -e "$i"
 done<"$userfile"
+
+# Add users to specific group
+# Assumes group_name exists on system
+# One purpose: To allow SSH access for the group (separately)
+
+while read i ; do
+  usermod -a -G "$group_name" "$i"
+done<"$userfile"
