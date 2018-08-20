@@ -11,7 +11,7 @@ userfile="user_list_file.csv"
 
 # Create users, one line at a time
 while read i ; do
-	useradd -mU "$i"
+  useradd -m -U -s /bin/bash "$i"
 done<"$userfile"
 
 # Get total count of users. Assign number to variable
