@@ -1,26 +1,17 @@
 #!/bin/bash
 
 ## Written by Sean Burns
-## Date: 2018-08-28
+## Date: 2018-08-18
 ## Purpose: Batch create user accounts and directories on Linux server
-## I removed forcing password change from previous version (v-01)
-
-## TODO: test if users exists; then skip those users
-## TODO: test if group exists; then exit
-## TODO: create public_html directory for users since userdir module is added
+## Setup temporary passwords
 
 # Assign user list to variable
 # Each line in the file has one username, single column, no spaces
 userfile="user_list_file.csv"
 
-# Add users to specific group
-# Assumes group_name exists on system
-# One purpose: To allow SSH access for the group (separately)
-group_name="name_of_user_group"
-
 # Create users, one line at a time
 while read i ; do
-  useradd -m -U -s /bin/bash -G "$group_name" "$i"
+  useradd -m -U -s /bin/bash "$i"
 done<"$userfile"
 
 # Get total count of users. Assign number to variable
@@ -42,3 +33,16 @@ paste -d ":" "$userfile" userpw > pwuser
 
 # Update passwords for the users
 chpasswd < pwuser
+
+# Force users to change passwords when they log in for the first time
+while read i ; do
+	passwd -e "$i"
+done<"$userfile"
+
+# Add users to specific group
+# Assumes group_name exists on system
+# One purpose: To allow SSH access for the group (separately)
+
+while read i ; do
+  usermod -a -G "$group_name" "$i"
+done<"$userfile"
