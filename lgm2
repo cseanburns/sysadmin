@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# Date: Fri Sep 14 09:34:02 EDT 2018
-
-groupA="sis_students"
-groupB="sis_fac_staff"
-
-getent group | grep "^$groupA" | cut -d: -f4 | tr , '\n' | echo "There are $(wc -l) accounts in "$groupA"."
-getent group | grep "^$groupB" | cut -d: -f4 | tr , '\n' | echo "There are $(wc -l) accounts in "$groupB"."
