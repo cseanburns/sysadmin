@@ -35,7 +35,7 @@ totalusers=$(wc -l < "$userfile")
 # e.g., the letter L
 # because chpasswd uses colons as a file separator
 for i in $(seq 1 "$totalusers") ; do
-  pwgen -cny 12 | cut -d " " -f 1 >> userpw
+  pwgen -cnsy 20 | cut -d " " -f 1 >> userpw
   sed -i 's/:/L/g' userpw
 done
 

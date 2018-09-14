@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Description: Get counts of Linux users in particular group
+# Date: Fri Sep 14 09:34:02 EDT 2018
+
+# use 'getent' to list all groups and members
+# use 'grep' to locate group of interest
+# use 'cut' to remove non-membership info (i.e.,the first four fields)
+# use 'tr' to replace commans with newlines (each member on their own line)
+# use 'wc' to count the number of members
+
+groupA="substitute_name_of_group"
+
+getent group | grep "^$groupA" | cut -d: -f4 | tr , '\n' | echo "There are $(wc -l) accounts in "$groupA"."
