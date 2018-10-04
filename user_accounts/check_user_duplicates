@@ -11,7 +11,8 @@ userfile="user_list_file.csv"
 # Get list of current account user names and save to file current_accounts.txt
 cat /etc/passwd | cut -d: -f1 > current_accounts.txt
 
-# cat the above file to a file containing a list of pre-existing new accounts to create
+# cat the above file to a file containing a list of pre-existing new accounts
+# to create
 cat current_accounts.txt "$userfile" > all_accounts.txt
 
 # sort the user names in the new file and only print duplicate lines
