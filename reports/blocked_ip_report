@@ -1,0 +1,51 @@
+#!/bin/bash
+ 
+# Create a report of blocked IPs from ufw.log
+# Date: Wed Sep 26 11:02:05 EDT 2018
+# Sean Burns
+
+# Homework: Explain the parts of this script and suggest improvements
+
+# grep for blocked IPs (IPv4 only; there are some IPv6 addresses that we're
+# ignoring for now) and get whole line
+
+grep "SRC\=[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*"\
+	ufw.log > ufw_IP4only.txt
+
+# now only get regex part
+grep -o "SRC\=[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*"\
+	ufw_IP4only.txt > IPs.txt
+
+# grep for dates, regex part only
+grep -o "^[[:upper:]][[:lower:]][[:lower:]] [[:digit:]]*"\
+	ufw_IP4only.txt > dates.txt
+
+# remove "SRC=" from IPs.txt
+sed -e "s/^SRC=//" IPs.txt > IP.txt
+
+# join the two files into a single file with two columns
+paste IP.txt dates.txt > tmp_report.txt
+
+# Sort and count
+sort tmp_report.txt | uniq -c | sort -gr > final_report.txt
+
+# Clean up
+rm ufw_IP4only.txt IPs.txt dates.txt IP.txt tmp_report.txt
+
+### Provide a sum of the count ###
+
+# First remove blank spaces
+cat final_report.txt | tr -s "[:blank:]" "," > fr1.txt
+
+# Remove starting comma
+sed -e "s/^,//" fr1.txt > fr2.txt
+
+# Sum using awk
+total=$(awk -F',' '{sum+=$1} END{print sum}' fr2.txt)
+printf "\nThere were $total IP blocks for the reporting period.\n"
+
+# Add a header row
+sed -e '1 i\Count,IP,Date' fr2.txt > final_report.csv
+
+# 2nd clean up
+rm fr1.txt fr2.txt 
