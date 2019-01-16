@@ -24,5 +24,3 @@ cat duplicates.txt "$userfile" | sort | uniq -u > users_to_add.txt
 
 # remove uneeded files
 rm current_accounts.txt all_accounts.txt duplicates.txt
-
-
