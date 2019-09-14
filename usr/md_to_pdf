@@ -1,0 +1,16 @@
+#!/bin/bash
+
+## 10/13/2016
+##
+## Convert markdown file to PDF
+## Pandoc's PDF conversion uses LaTeX; this just requires LibreOffice
+##
+## comand line usage: md_to_pdf.sh test.md
+##
+## non-script usage:
+## pandoc -o test.odt test.md | soffice --headless --convert-to pdf test.odt
+
+file_0="$1"               # read file name.  Ex: test.md
+file_1="${file_0%.*}"     # strip extension. Ex: test
+
+pandoc -o "${file_1}".odt "${file_0}" | soffice --headless --convert-to pdf "${file_1}".odt
