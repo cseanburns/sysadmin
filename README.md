@@ -10,5 +10,5 @@ Need to test, but the following two files will be piped when creating new user
 accounts:
 
 ```bash
-check_user_duplicates | create_accounts
+checkuserduplicates | createaccounts
 ```

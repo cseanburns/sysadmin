@@ -1,0 +1,83 @@
+#! /usr/bin/python
+
+""" Fetches weather from Yahoo Weather and displays it on the
+command-line.
+
+Based on python-weather-api (python-pywapi)
+python-pywapi does all the heavy lifting
+URL: https://code.google.com/p/python-weather-api/
+
+To install python-pywapi on Debian and related OSes:
+apt-get install python-pywapi
+
+The pywapi call below (held in the variable yahoo_result) returns
+data as a dict (dictionary) type. See:
+http://docs.python.org/2/tutorial/datastructures.html#dictionaries
+https://en.wikibooks.org/wiki/Python_Programming/Dictionaries
+
+Future note: for looping through dictionaries, see:
+http://docs.python.org/2/tutorial/datastructures.html#dictionaries
+
+"""
+
+import sys
+import pywapi
+
+# Get zipcode from command-line argument
+# Usage: ./weather.py 65201
+# Usage: python weather.py 65201
+
+zipCode = sys.argv
+
+# Pull relevant weather information from Yahoo
+
+if len(sys.argv) == 2:
+    yahoo_result = pywapi.get_weather_from_yahoo(zipCode[1], 'imperial')
+else:
+    print "\nUsage: ./weather.py <zip code>\nEx: ./weather.py 65201\n"
+    sys.exit(1)
+
+## Print Title Information, including weather location, time, and
+## source of weather information
+
+print ""
+print yahoo_result['condition']['title']
+print "by Yahoo Weather, http://weather.yahoo.com"
+
+## Print today's weather information
+
+print ""
+print "Weather conditions as of " + yahoo_result['condition']['date']
+print ""
+print "\tTemperature is " + yahoo_result['condition']['temp'] + " F"
+print ""
+print "\tConditions are " + yahoo_result['condition']['text']
+print ""
+print "\tSunrise is " + yahoo_result['astronomy']['sunrise']
+print "\tSunset is " + yahoo_result['astronomy']['sunset']
+print "\tHumidity is " + yahoo_result['atmosphere']['humidity'] + "%"
+print "\tPressure is " + yahoo_result['atmosphere']['pressure']
+
+## Saves 'forecasts' dictionary item as a list
+## The forecasts key also holds today's high and low weather data
+
+a = yahoo_result['forecasts']
+
+## Print today's expected high and low temperature
+
+print "\tHigh of " + a[0]['high'] + " F"
+print "\tLow of " + a[0]['low'] + " F"
+
+## Print expected highs, lows, and conditions for the next four days
+
+print ""
+print "FOUR DAY FORECAST IS: "
+print ""
+
+for i in a[1], a[2], a[3], a[4]:
+    print '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+    print '| Date' + "\t\t" + '| High' + "\t\t" + '| Low' + "\t\t" + '| Conditions '
+    print '| ' + i['date'] + "\t" + '| ' + i['high'] + "\t\t" + '| ' + i['low'] + "\t\t" + '| ' + i['text']
+    print '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+
+print ""
