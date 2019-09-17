@@ -41,5 +41,6 @@ while (int(guess) != x):
         guess = input("Guess again: ")
         if (int(guess) == x):
             print(Fore.BLUE + "\nCongratulations, that is correct!\n")
+            print(Fore.WHITE)
     else:
-        print("Game over.\n")
+        print("Game over.\n" + Fore.WHITE)
