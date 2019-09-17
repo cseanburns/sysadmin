@@ -8,4 +8,6 @@
 # Because of the awk command, assumes a file structured like:
 # "last name, first name","username",...
 
-grep -i "$1" addresses.csv | awk -F, '{ print $3}' | sed 's/"//g'
+lookup="addresses.csv"
+
+grep -i "$1" "$lookup" | awk -F, '{ print $3}' | sed 's/"//g'
