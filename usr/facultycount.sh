@@ -5,10 +5,10 @@
 # Get a count of all members of the 'faculty' group on the server and
 # list them
 
-totalfac=$(grep 'faculty' /etc/group | sed -e 's/:/\n/g' | sed -e 's/,/\n/g' | wc -l)
-echo ""
-echo "There are $(($totalfac - 3)) faculty or staff accounts."
-echo ""
-echo "They include the following:"
-grep 'faculty' /etc/group | sed -e 's/:/\n/g' | sed -e 's/,/\n/g' | tail -n"$(($totalfac - 3))"
-echo ""
+totalfac=$(grep "faculty" /etc/group | sed -e 's/:/\n/g' | tail -n1 | sed -e 's/,/\n/g' | wc -l)
+printf "\n"
+printf "There are $(($totalfac)) faculty or staff accounts.\n"
+printf "\n"
+printf "They include the following:\n"
+grep "faculty" /etc/group | sed -e 's/:/\n/g' | tail -n1 | sed -e 's/,/\n/g'
+printf "\n"
