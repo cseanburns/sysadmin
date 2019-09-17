@@ -19,16 +19,13 @@ end=$(tput sgr0)
 x=$((1 + RANDOM % 100))
 
 clear
-#echo $x (uncomment to check if working)
+#echo $x #(uncomment to check if working)
 printf "Guess a number between 1 and 100.\n"
 printf "What is your guess? "
 declare -i guess
 read -r guess
 
-if [[ $guess -eq $x ]] ; then
-  printf "%s\n" "${blue}Are you psychic, because you guessed right away!${end}"
-  exit 0
-fi
+[[ $guess -eq $x ]] && printf "%s\n" "${blue}Are you psychic, because you guessed right away!${end}" 
 
 until [[ $guess -eq $x ]]
 do
