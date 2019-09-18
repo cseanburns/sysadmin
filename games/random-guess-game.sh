@@ -11,6 +11,7 @@
 # Tell players how many guesses it took to get the correct guess
 # Generate a plot (gnuplot maybe?) plotting each random number as they play
 
+# ``man 5 terminfo`` for setaf values/colors
 red=$(tput setaf 1)
 green=$(tput setaf 2)
 blue=$(tput setaf 4)
