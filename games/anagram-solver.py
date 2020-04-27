@@ -9,7 +9,7 @@
 # specific letter in all found words
 # 2. Make pretty
  
-from itertools import *
+from itertools import product
 
 # take letters for anagram
 letters = input()
