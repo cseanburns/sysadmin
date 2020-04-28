@@ -22,25 +22,25 @@ os.system('clear')
 x = random.randrange(1, 100, 1)
 
 # Ask user for input
-print("Guess a number from 1 to 100.\n")
+print("Guess a number from 1 to 100.")
 guess = input("Please enter your number: ")
 
 # If first guess is correct
 if (int(guess) == x):
-    print(Fore.MAGENTA + "\nAre you psychic, because you guessed right away!\n")
+    print(Fore.MAGENTA + "Are you psychic, because you guessed right away!")
 
 # If first guess is not correct
 while (int(guess) != x):
     if (int(guess) > x):
-        print(Fore.RED + "\nYour guess is too high.\n")
-        guess = input("Guess again: ")
+        print(Fore.RED + "Your guess is too high.")
+        guess = input(Fore.WHITE + "Guess again: ")
         if (int(guess) == x):
-            print(Fore.BLUE + "\nCongratulations, that is correct!\n")
+            print(Fore.BLUE + "Congratulations, that is correct!")
     elif (int(guess) < x):
-        print(Fore.GREEN + "\nYour guess is too low.\n")
-        guess = input("Guess again: ")
+        print(Fore.GREEN + "Your guess is too low.")
+        guess = input(Fore.WHITE + "Guess again: ")
         if (int(guess) == x):
-            print(Fore.BLUE + "\nCongratulations, that is correct!\n")
+            print(Fore.BLUE + "Congratulations, that is correct!")
             print(Fore.WHITE)
     else:
-        print("Game over.\n" + Fore.WHITE)
+        print(Fore.WHITE + "Game over.")
