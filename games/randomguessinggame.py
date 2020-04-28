@@ -51,12 +51,12 @@ def playgame():
 
 def playagain():
     while True:
-        replay = input(Fore.WHITE + "Play again? Enter y or n. ").lower()
+        replay = input(Fore.WHITE + "Play again? Enter y or n. ").upper()
 
-        if replay in ("yes", "y"):
+        if replay in ("Yes", "Y"):
             playgame()
-        elif replay in ("no", "n"):
-            print("Thank you for playing.")
+        elif replay in ("No", "N"):
+            print("Thank you for playing.\n")
             raise SystemExit
         else:
             print(Fore.RED + "Sorry, I don't understand.")
