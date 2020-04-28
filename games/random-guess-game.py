@@ -4,12 +4,12 @@
 # by Sean Burns
 # Guess a number between 1 and 100
 # Wed 12 Dec 2018 
+# revision: Tue Apr 28 00:09:18 EDT 2020
 #
 # Ask players if they want to play again
 # Track score history
 # Tell players how many guesses it took to get the correct guess
 # Generate a plot (pyplot) plotting each random number as they play
-# Fix color reset after quitting/winning
  
 import os
 import random
