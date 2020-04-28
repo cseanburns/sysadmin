@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+# Prints out office hours for the semester
+#
+# Print out the code and use it as the signage outside my office door
+
 import os 
 from datetime import datetime
 
