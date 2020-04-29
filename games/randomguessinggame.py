@@ -20,10 +20,10 @@ def playgame():
     os.system('clear')
     
     # Get a random number
-    x = random.randrange(1, 100, 1)
+    x = random.randrange(1, 1000, 1)
     
     # Ask user for input
-    print("Guess a number from 1 to 100.")
+    print("Guess a number from 1 to 1000.")
     guess = input("Please enter your number: ")
     
     # If first guess is correct
