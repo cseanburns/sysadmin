@@ -18,12 +18,14 @@ print("Associate Professor")
 print(email)
 print("859-555-0000")
 print("Spring 2020")
+print("")
 
 if officeday == day1:
-    print("\nSince today is {}, my office hours are 1-3pm".format(day1))
+    print(f'Since today is {day1}, my office hours are 1-3pm')
 elif officeday == day2:
-    print("\nSince today is {}, my office hours are 1-3pm".format(day2))
+    print(f'Since today is {day2}, my office hours are 1-3pm')
 else:
-    print("\nSince today is neither {} nor {},".format(day1,day2))
-    print("please knock on door or email me at {}".format(email))
-    print("to schedule an appointment.")
+    print(f'Since today is neither {day1} nor {day2},')
+    print('please knock on door or email me at')
+    print(f'{email} to schedule an appointment.')
+    print("")
