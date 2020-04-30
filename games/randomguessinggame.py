@@ -33,15 +33,15 @@ def playgame():
     # If first guess is not correct
     while (int(guess) != x):
         if (int(guess) > x):
-            print(Fore.RED + "Your guess is too high.")
+            print(Fore.RED + f"Your guess of {guess} is too high.\n")
             guess = input(Fore.WHITE + "Guess again: ")
             if (int(guess) == x):
-                print(Fore.BLUE + "Congratulations, that is correct!")
+                print(Fore.BLUE + f"Congratulations, your guess of {guess} is correct!\n")
         elif (int(guess) < x):
-            print(Fore.GREEN + "Your guess is too low.")
+            print(Fore.GREEN + f"Your guess of {guess} is too low.\n")
             guess = input(Fore.WHITE + "Guess again: ")
             if (int(guess) == x):
-                print(Fore.BLUE + "Congratulations, that is correct!")
+                print(Fore.BLUE + f"Congratulations, your guess of {guess} is correct!\n")
                 print(Fore.WHITE)
         else:
             print(Fore.WHITE + "Game over.")
