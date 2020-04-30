@@ -7,25 +7,27 @@
 import os 
 from datetime import datetime
 
-officeday = datetime.today().strftime('%a')
-day1 = "Tue"
-day2 = "Wed"
-email = "myemail@uky.edu"
+officeday = datetime.today().strftime('%A')
+day1     = "Tuesday"
+day2     = "Wednesday"
+email    = "myemail@uky.edu"
+name     = "Sean Burns"
+rank     = "Associate Professor"
+unit     = "School of Information Science"
+phone    = "859-555-0000"
 
 os.system("clear")
-print("Christopher Sean Burns, PhD")
-print("Associate Professor")
-print(email)
-print("859-555-0000")
-print("Spring 2020")
-print("")
+
+print(f"Here works {name}, an {rank}")
+print(f"at the {unit}.")
+print(f'Today is {officeday}.')
 
 if officeday == day1:
-    print(f'Since today is {day1}, my office hours are 1-3pm')
+    print(f'If today is {day1}, then my office hours are 1-3pm.')
 elif officeday == day2:
-    print(f'Since today is {day2}, my office hours are 1-3pm')
+    print(f'If today is {day2}, then my office hours are 1-3pm.')
 else:
-    print(f'Since today is neither {day1} nor {day2},')
-    print('please knock on door or email me at')
-    print(f'{email} to schedule an appointment.')
-    print("")
+    print(f'If {officeday} is not {day1} or is not {day2},')
+    print('then I do not have office hours today. Please knock on door')
+    print(f'or email me at {email} or call me at {phone}')
+    print('to schedule an appointment.')
