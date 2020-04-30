@@ -1,4 +1,4 @@
-#!/usr/bin/python3 
+#!/usr/bin/env python3 
 
 # Anagram solver, by Sean Burns
 
@@ -18,28 +18,41 @@
 # renamed to 'wordlist'
 
 # To Do: Create if statements to exit nicely if input is not understood
-# To Do: Allow to keep going with different integers to generate
-# different length of words without starting over
-# To Do: print output in pretty columns
-# To Do: make 'main letter' optional so that it could just be an anagram
+# To Do: Don't ask to re-enter letters and mainletter
+# To Do: Print output in pretty columns
+# To Do: Make 'main letter' optional so that it could just be an anagram
 # solver and not just a NYTimes Spelling Bee solver
 
+import os
 import re
 import sys
 from itertools import product
  
-def scramble():
+os.system('clear')
+
+def scrambledletters():
     print("Enter letters: ")
     letters = input()
     letters = str(letters.lower())
+    return letters
 
-    print("Enter main letter: ")
-    mainletter = input()
-    mainletter = str(mainletter.lower())
+def centerletter():
+    print("Enter center letter: ")
+    letter = input()
+    letter = str(letter.lower())
+    return letter
 
-    print("Enter length of words (no more than 8): ")
+def wordlength():
+    print("Enter length of words (>= 4 | <=8): ")
     repeats = input()
     repeats = int(repeats)
+    return repeats
+
+def formwords():
+    letters = scrambledletters()
+    mainletter = centerletter()
+
+    repeats = wordlength()
 
     # create possible word formations
     suggestions = product(letters, repeat = repeats)
@@ -48,18 +61,25 @@ def scramble():
     for i in suggestions:
         result.append(''.join(i))
 
-    # reduce possible word formations to those listed in the dictionary
+    # reduce possible word formations to those
+    # listed in the dictionary
     with open('wordlist', 'r') as wordlist:
         comparewords = wordlist.read().splitlines()
 
     # reduce words to those with the main letter
     lettermatch = re.compile(".*{}".format(mainletter))
     comparewords = list(filter(lettermatch.match, comparewords))
-            
+    
     # print results
     print(*set(result).intersection(comparewords))
+    print("")
+
+def newnumber():
+    while True:
+        formwords()
 
 def main():
-    scramble()
-
-main()
+    newnumber()
+    
+if __name__ == '__main__':
+    main()
