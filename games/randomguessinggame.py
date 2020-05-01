@@ -1,10 +1,9 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3 
 
 # Random Number Guessing Game
 # by Sean Burns
-# Guess a number between 1 and 100
-# Creation: Wed 12 Dec 2018 
-# Revision: Tue Apr 28 00:09:18 EDT 2020
+# Guess a number between 1 and 1000
+# Wed 12 Dec 2018 
 #
 # To do:
 # Track score history
@@ -25,22 +24,25 @@ def playgame():
     # Ask user for input
     print("Guess a number from 1 to 1000.")
     guess = input("Please enter your number: ")
+    guess = int(guess)
     
     # If first guess is correct
-    if (int(guess) == x):
+    if (guess == x):
         print(Fore.MAGENTA + "Are you psychic, because you guessed right away!")
 
     # If first guess is not correct
-    while (int(guess) != x):
-        if (int(guess) > x):
+    while (guess != x):
+        if (guess > x):
             print(Fore.RED + f"Your guess of {guess} is too high.\n")
             guess = input(Fore.WHITE + "Guess again: ")
-            if (int(guess) == x):
+            guess = int(guess)
+            if (guess == x):
                 print(Fore.BLUE + f"Congratulations, your guess of {guess} is correct!\n")
-        elif (int(guess) < x):
+        elif (guess < x):
             print(Fore.GREEN + f"Your guess of {guess} is too low.\n")
             guess = input(Fore.WHITE + "Guess again: ")
-            if (int(guess) == x):
+            guess = int(guess)
+            if (guess == x):
                 print(Fore.BLUE + f"Congratulations, your guess of {guess} is correct!\n")
                 print(Fore.WHITE)
         else:
