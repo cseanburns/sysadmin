@@ -55,7 +55,7 @@ elif mainletter not in letters:
 else:
     print("Proceed. " + Fore.RED + "Press Ctrl-C to quit.\n")
 
-print(Fore.GREEN + "Wise not to enter more than 9 or 10\n")
+print(Fore.GREEN + "Wise not to enter more than 9 or 10.\n")
 
 def wordlength():
     print(Style.RESET_ALL + "Enter length of words: ")
