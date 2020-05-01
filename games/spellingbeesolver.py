@@ -1,56 +1,56 @@
-#!/usr/bin/env python3 
+#!/usr/bin/env python3
+"""
+NYTimes Spelling Bee solver, by Sean Burns, April 30, 2020
 
-# NYTimes Spelling Bee solver, by Sean Burns, April 30, 2020
-#
-# The Spelling Bee program https://www.nytimes.com/puzzles/spelling-bee
-# provides seven letters, one of which, the center, must be included.
-#
-# To use this script, enter the seven letters at the first prompt. In
-# the second prompt, specify the required, center letter. In the
-# subsequent prompts, choose *n*-letter words to output. 
-#
-# Unless you have a particularly powerful processor and loads of memory,
-# it's wise not to enter too large an *n*. My lightweight laptop will
-# freeze if *n* is greater than 9.
-#
-# The script generates possible word formations at *n*-letter words and
-# then outputs those words that are found in a wordlist and that include
-# the center letter. The 'wordlist' file in this repository is required
-# to run this script.
-#
-# The 'wordlist' file is /usr/share/dict/american-english
-# (Debian/Ubuntu). That dictionary file was cleaned up with Bash
-# (punctuation removed, cases lowered, etc) and renamed to 'wordlist'.
-# It could probably be cleaned up more. For example, the Spelling Bee
-# only counts 4-letter words or longer but the wordlist file has
-# {1,2,3}-letter words, plus non-ascii characters, that could be removed
-# or modified. Other word lists can be substituted as long as there is
-# one word per line in the file.
-#
-# To Do: Make center letter optional so that it could just be an anagram
-# solver and not just a NYTimes Spelling Bee solver.
- 
+The Spelling Bee program https://www.nytimes.com/puzzles/spelling-bee
+provides seven letters, one of which, the center, must be included.
+
+To use this script, enter the seven letters at the first prompt. In the
+second prompt, specify the required, center letter. In the subsequent
+prompts, choose *n*-letter words to output.
+
+Unless you have a particularly powerful processor and loads of memory, it's
+wise not to enter too large an *n*. My lightweight laptop will freeze if *n*
+is greater than 9.
+
+The script generates possible word formations at *n*-letter words and then
+outputs those words that are found in a wordlist and that include the center
+letter. The 'wordlist' file in this repository is required to run this
+script.
+
+The 'wordlist' file is /usr/share/dict/american-english (Debian/Ubuntu). That
+dictionary file was cleaned up with Bash (punctuation removed, cases lowered,
+etc) and renamed to 'wordlist'. It could probably be cleaned up more. For
+example, the Spelling Bee only counts 4-letter words or longer but the
+wordlist file has {1,2,3}-letter words, plus non-ascii characters, that could
+be removed or modified. Other word lists can be substituted as long as there
+is one word per line in the file.
+
+TODO: Make center letter optional so that it could just be an anagram solver
+and not just a NYTimes Spelling Bee solver.
+"""
+
 import os
 import re
 import sys
 from itertools import product
 from colorama import Fore, Style
- 
+
 os.system('clear')
 
 print("NYTimes Spelling Bee Solver\n")
 
 print("Enter all seven letters: \n")
-letters = input()
-letters = str(letters.lower())
+LETTERS = input()
+LETTERS = str(LETTERS.lower())
 
 print("Specify center letter: ")
-mainletter = input()
-mainletter = str(mainletter.lower())
+MAINLETTER = input()
+MAINLETTER = str(MAINLETTER.lower())
 
-if len(letters) != 7:
-    sys.exit("Bye. You must have seven letters.")
-elif mainletter not in letters:
+if len(LETTERS) != 7:
+    sys.exit("Bye. You must have seven LETTERS.")
+elif MAINLETTER not in LETTERS:
     sys.exit("Bye. Need to enter letter from those entered above.")
 else:
     print("Proceed. " + Fore.RED + "Press Ctrl-C to quit.\n")
@@ -58,16 +58,25 @@ else:
 print(Fore.GREEN + "Wise not to enter more than 9 or 10.\n")
 
 def wordlength():
+    """ This function takes as input the n-length of words to form.
+    Input should be an integer from 4 to 8 but not restricted to that.
+    """
     print(Style.RESET_ALL + "Enter length of words: ")
     repeats = input()
     repeats = int(repeats)
     return repeats
 
 def formwords():
+    """ This function:
+    1. Creates word combinations
+    2. Reduces those combinations to those matching the wordlist file
+    3. Reduces those combinations matching the wordlist file to those
+    with the MAINLETTER.
+    """
     repeats = wordlength()
 
     # create possible word formations
-    suggestions = product(letters, repeat = repeats)
+    suggestions = product(LETTERS, repeat=repeats)
 
     result = []
     for i in suggestions:
@@ -79,19 +88,18 @@ def formwords():
         comparewords = wordlist.read().splitlines()
 
     # reduce words to those with the main letter
-    lettermatch = re.compile(".*{}".format(mainletter))
+    lettermatch = re.compile(".*{}".format(MAINLETTER))
     comparewords = list(filter(lettermatch.match, comparewords))
-    
+
     # print results
     print(*set(result).intersection(comparewords))
     print("")
 
-def newnumber():
-    formwords()
-
 def main():
+    """ This function allows the script to run as a standalone
+    program."""
     while True:
-        newnumber()
+        formwords()
 
 if __name__ == '__main__':
     try:
