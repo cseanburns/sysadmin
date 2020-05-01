@@ -1,57 +1,63 @@
 #!/usr/bin/env python3 
 
-# Anagram solver, by Sean Burns
-
-# 1. Take as input a series of scrambled letters.
+# NYTimes Spelling Bee solver, by Sean Burns, April 30, 2020
 #
-# 2. Take as input a single letter that is required in the output
+# The Spelling Bee program https://www.nytimes.com/puzzles/spelling-bee
+# provides seven letters, one of which, the center, must be included.
 #
-# 3. Take as input an integer that determines how many characters per
-# word (ex: 4 for four letter words, 5 for five letter words, etc.), but
-# be warned, values too high are computationally expensive and may crash
-# computer
+# To use this script, enter the seven letters at the first prompt. In
+# the second prompt, specify the required, center letter. In the
+# subsequent prompts, choose *n*-length words to output. 
 #
-# 4. Compare output to a list of words (file named 'wordlist'). The word
-# list is based on the american-english dictionary located at
-# /usr/share/dict/american-english. The dictionary file was cleaned up
-# with Bash (removed punctuations, lower cased, etc) and the file was
-# renamed to 'wordlist'
-
-# To Do: Create if statements to exit nicely if input is not understood
-# To Do: Don't ask to re-enter letters and mainletter
-# To Do: Print output in pretty columns
-# To Do: Make 'main letter' optional so that it could just be an anagram
-# solver and not just a NYTimes Spelling Bee solver
-
+# Unless you have a particularly powerful processor and loads of memory,
+# it's wise not to enter too large an *n*. My lightweight laptop will
+# freeze if *n* is greater than 9.
+#
+# The script generates possible word formations at *n*-length words and
+# then outputs those words that are found in a wordlist. The 'wordlist'
+# file in this repository is therefore required to run this script.
+#
+# The 'wordlist' file is /usr/share/dict/american-english
+# (Debian/Ubuntu). That dictionary file was cleaned up with Bash
+# (punctuation removed, cases lowered, etc) and renamed to 'wordlist'.
+#
+# To Do: Make center letter optional so that it could just be an anagram
+# solver and not just a NYTimes Spelling Bee solver.
+ 
 import os
 import re
 import sys
 from itertools import product
+from colorama import Fore, Style
  
 os.system('clear')
 
-def scrambledletters():
-    print("Enter letters: ")
-    letters = input()
-    letters = str(letters.lower())
-    return letters
+print("NYTimes Spelling Bee Solver\n")
 
-def centerletter():
-    print("Enter center letter: ")
-    letter = input()
-    letter = str(letter.lower())
-    return letter
+print("Enter all seven letters: \n")
+letters = input()
+letters = str(letters.lower())
+
+print("Specify center letter: ")
+mainletter = input()
+mainletter = str(mainletter.lower())
+
+if len(letters) != 7:
+    sys.exit("Bye. You must have seven letters.")
+elif mainletter not in letters:
+    sys.exit("Bye. Need to enter letter from those entered above.")
+else:
+    print("Proceed. " + Fore.RED + "Press Ctrl-C to quit.\n")
+
+print(Fore.GREEN + "Wise not to enter more than 9 or 10\n")
 
 def wordlength():
-    print("Enter length of words (>= 4 | <=8): ")
+    print(Style.RESET_ALL + "Enter length of words: ")
     repeats = input()
     repeats = int(repeats)
     return repeats
 
 def formwords():
-    letters = scrambledletters()
-    mainletter = centerletter()
-
     repeats = wordlength()
 
     # create possible word formations
@@ -75,11 +81,18 @@ def formwords():
     print("")
 
 def newnumber():
-    while True:
-        formwords()
+    formwords()
 
 def main():
-    newnumber()
-    
+    while True:
+        newnumber()
+
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("Bye!")
+
+# This script is a product of COVID-19 quarantine. After a long day, I
+# didn't want to do any more work, watch any more shows, or read
+# anything, and thought I'd just play around with and practice Python.
