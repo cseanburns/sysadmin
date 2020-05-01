@@ -7,19 +7,25 @@
 #
 # To use this script, enter the seven letters at the first prompt. In
 # the second prompt, specify the required, center letter. In the
-# subsequent prompts, choose *n*-length words to output. 
+# subsequent prompts, choose *n*-letter words to output. 
 #
 # Unless you have a particularly powerful processor and loads of memory,
 # it's wise not to enter too large an *n*. My lightweight laptop will
 # freeze if *n* is greater than 9.
 #
-# The script generates possible word formations at *n*-length words and
-# then outputs those words that are found in a wordlist. The 'wordlist'
-# file in this repository is therefore required to run this script.
+# The script generates possible word formations at *n*-letter words and
+# then outputs those words that are found in a wordlist and that include
+# the center letter. The 'wordlist' file in this repository is required
+# to run this script.
 #
 # The 'wordlist' file is /usr/share/dict/american-english
 # (Debian/Ubuntu). That dictionary file was cleaned up with Bash
 # (punctuation removed, cases lowered, etc) and renamed to 'wordlist'.
+# It could probably be cleaned up more. For example, the Spelling Bee
+# only counts 4-letter words or longer but the wordlist file has
+# {1,2,3}-letter words, plus non-ascii characters, that could be removed
+# or modified. Other word lists can be substituted as long as there is
+# one word per line in the file.
 #
 # To Do: Make center letter optional so that it could just be an anagram
 # solver and not just a NYTimes Spelling Bee solver.
