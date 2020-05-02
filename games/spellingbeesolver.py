@@ -2,16 +2,17 @@
 """
 NYTimes Spelling Bee solver, by Sean Burns, April 30, 2020
 
-The Spelling Bee program https://www.nytimes.com/puzzles/spelling-bee
-provides seven letters, one of which, the center, must be included.
+The Spelling Bee program https://www.nytimes.com/puzzles/spelling-bee is a game
+to create the most words out of a set of seven letters, one of which, the center
+in the game, must be included.
 
 To use this script, enter the seven letters at the first prompt. In the
 second prompt, specify the required, center letter. In the subsequent
 prompts, choose *n*-letter words to output.
 
-Unless you have a particularly powerful processor and loads of memory, it's
-wise not to enter too large an *n*. My lightweight laptop will freeze if *n*
-is greater than 9.
+Unless you have a particularly powerful processor and loads of memory, it's wise
+not to enter too large an *n*. My lightweight laptop will freeze if *n* is
+sometimes equal to or most certainly when it's greater than 9.
 
 The script generates possible word formations at *n*-letter words and then
 outputs those words that are found in a wordlist and that include the center
@@ -71,7 +72,7 @@ def formwords():
     1. Creates word combinations
     2. Reduces those combinations to those matching the wordlist file
     3. Reduces those combinations matching the wordlist file to those
-    with the MAINLETTER.
+    that contain the MAINLETTER.
     """
     repeats = wordlength()
 
