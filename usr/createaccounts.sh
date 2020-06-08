@@ -41,6 +41,7 @@ done
 
 # Join usernames to temporary passwords
 paste -d ":" "$userfile" userpw > pwuser
+chmod 600 pwuser
 
 # Update passwords for the users
 chpasswd < pwuser
