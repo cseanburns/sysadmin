@@ -44,3 +44,4 @@ paste -d ":" "$userfile" userpw > pwuser
 
 # Update passwords for the users
 chpasswd < pwuser
+rm userpw
