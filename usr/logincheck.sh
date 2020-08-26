@@ -6,8 +6,5 @@
 # file 'accountsnames' includes user accounts, one line each
 
 while read i ; do
-	echo "$i:" ; tail -n2 "/home/$i/.bash_history" ; echo -e "\n"
+  lastlog -u "$i"
 done < /root/bin/accountsnames > /root/logs/$(date +%Y-%m-%d).txt
-
-# Convert dates
-/root/bin/dateconvert.sh  /root/logs/$(date +%Y-%m-%d).txt
