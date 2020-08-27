@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Check how much time left to sync email
+#
+# I'm using mbsync and a systemd timer (instead of cron) for the first time
+# It's nice that ``systemctl status --user mbsync.timer`` will show the time
+# left before the next sync, but I didn't like running that whole command just
+# to see what that time was. So this script just returns that value, and if
+# mbsync is syncing, then it says so. I've included my
+# ~/.config/systemd/user/mbsync.{service,timer} files for reference.
+#
+# Aug 26, 2020
+# Sean Burns
+
+gettime () {
+  awk -F";" '{
+    if($2=="")
+      print "Syncing ...";
+    else
+      print "Time left to sync: " $2
+    }' 
+}
+
+systemctl status --user mbsync.timer | grep -F "Trigger:" | gettime
+
+# mbsync.service and mbsync.timer files:
+#
+# From: ~/.config/systemd/user/mbsync.service
+#
+#[Unit]
+#Description=Mailbox synchronization service
+#
+#[Service]
+#Type=oneshot
+#ExecStart=/usr/bin/mbsync -Va
+##ExecStartPost=/usr/bin/notmuch new
+#
+
+# From: ~/.config/systemd/user/mbsync.timer
+#
+#[Unit]
+#Description=Mailbox synchronization timer
+#
+#[Timer]
+#OnBootSec=2m
+#OnUnitActiveSec=5m
+#Unit=mbsync.service
+#
+#[Install]
+#WantedBy=timers.target
