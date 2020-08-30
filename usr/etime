@@ -10,21 +10,16 @@
 # ~/.config/systemd/user/mbsync.{service,timer} files for reference.
 #
 # Aug 26, 2020
+# Aug 30, 2020
 # Sean Burns
 
-gettime () {
-  awk -F";" '{
-    if($2=="")
-      print "Syncing ...";
-    else
-      print "Time left to sync: " $2
-    }' 
-}
+systemctl status --user mbsync.timer |\
+         awk -F";"\
+         '/Trigger:/ && $2 == "" { print "Syncing..."}\
+         /Trigger:/ && $2 != "" { print "Time left to sync: " $2}'
 
-systemctl status --user mbsync.timer | grep -F "Trigger:" | gettime
-
-# mbsync.service and mbsync.timer files:
-#
+### mbsync.service and mbsync.timer files ###
+ 
 # From: ~/.config/systemd/user/mbsync.service
 #
 #[Unit]
