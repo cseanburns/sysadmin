@@ -15,7 +15,7 @@
 
 systemctl status --user mbsync.timer |\
          awk -F";"\
-         '/Trigger:/ && $2 == "" { print "Syncing..."}\
+         '/Trigger:/ && $2 == "" { print "Syncing..."}
          /Trigger:/ && $2 != "" { print "Time left to sync: " $2}'
 
 ### mbsync.service and mbsync.timer files ###
