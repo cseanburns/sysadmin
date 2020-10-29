@@ -24,7 +24,7 @@ def playgame():
     os.system('clear')
 
     # Get a random number
-    set_random = random.randrange(1, 1000, 1)
+    set_random = random.randrange(1, 100, 1)
 
     # Ask user for input
     print("Guess a number from 1 to 1000.")
