@@ -11,6 +11,10 @@
 # Tell players how many guesses it took to get the correct guess
 # Generate a plot (gnuplot maybe?) plotting each random number as they play
 
+# 11/12/2020: after functionizing this, script now has bug with lucky_guess()
+# function. If guess is correct on first try, then it asks again. If guess is
+# correct on second try, then it process lucky_guess(). Need to fix later. 
+
 # ``man 5 terminfo`` for setaf values/colors
 text_colors() {
   red=$(tput setaf 1)
