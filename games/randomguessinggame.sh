@@ -12,35 +12,60 @@
 # Generate a plot (gnuplot maybe?) plotting each random number as they play
 
 # ``man 5 terminfo`` for setaf values/colors
-red=$(tput setaf 1)
-green=$(tput setaf 2)
-blue=$(tput setaf 4)
-end=$(tput sgr0)
+text_colors() {
+  red=$(tput setaf 1)
+  green=$(tput setaf 2)
+  blue=$(tput setaf 4)
+  end=$(tput sgr0)
+}
 
-x=$((1 + RANDOM % 100))
+set_random() {
+  x=$((1 + RANDOM % 100))
+}
 
-clear
-#echo $x #(uncomment to check if working)
-printf "Guess a number between 1 and 100.\n"
-printf "What is your guess? "
-declare -i guess
-read -r guess
+get_user_input() {
+  clear
+  echo $x #(uncomment to check if working)
+  printf "Guess a number between 1 and 100.\n"
+  printf "What is your guess? "
+  declare -i guess
+  read -r guess
+}
 
-[[ $guess -eq $x ]] && printf "%s\n" "${blue}Are you psychic, because you guessed right away!${end}" 
+lucky_guess() {
+  [[ $guess -eq $x ]] && \
+    printf "%s\n" "${blue}Are you psychic, because you guessed right away!${end}" 
+  }
 
-until [[ $guess -eq $x ]]
-do
-  if [[ $guess -gt $x ]] ; then
-    printf "%s\n" "${red}Your guess is too high.${end}"
-    printf "Guess again: " ; declare -i guess ; read -r guess
-    if [[ $guess -eq $x ]] ; then
-      printf "%s\n" "${blue}Congratulations! $guess is correct!${end}"
+keep_guessing() {
+  lucky_guess
+  until [[ $guess -eq $x ]]
+  do
+    if [[ $guess -gt $x ]] ; then
+      printf "%s\n" "${red}Your guess is too high.${end}"
+      printf "Guess again: " ; \
+        declare -i guess ; \
+        read -r guess
+      if [[ $guess -eq $x ]] ; then
+        printf "%s\n" "${blue}Congratulations! $guess is correct!${end}"
+      fi
+    elif [[ $guess -lt $x ]] ; then
+      printf "%s\n" "${green}Your guess is too low.${end}"
+      printf "Guess again: " ; \
+        declare -i guess ; \
+        read -r guess
+      if [[ $guess -eq $x ]] ; then
+        printf "%s\n" "${blue}Congratulations! $guess is correct!${end}"
+      fi
     fi
-  elif [[ $guess -lt $x ]] ; then
-    printf "%s\n" "${green}Your guess is too low.${end}"
-    printf "Guess again: " ; declare -i guess ; read -r guess
-    if [[ $guess -eq $x ]] ; then
-      printf "%s\n" "${blue}Congratulations! $guess is correct!${end}"
-    fi
-  fi
-done
+  done
+}
+
+main() {
+  text_colors
+  set_random
+  get_user_input
+  keep_guessing
+}
+
+main
