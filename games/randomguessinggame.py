@@ -27,7 +27,7 @@ def playgame():
     set_random = random.randrange(1, 100, 1)
 
     # Ask user for input
-    print("Guess a number from 1 to 1000.")
+    print("Guess a number from 1 to 100.")
     guess = input("Please enter your number: ")
     guess = int(guess)
 
