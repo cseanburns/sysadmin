@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Date: 1/24/2021
+# A way to check if I have new email
+# Specifically, check to see if the Maildir new/ is greater than 0
+# Checks several Maildir directories where I receive new email
+
+base_dir="$HOME/Mail/"
+inbox_dir="$base_dir/INBOX/"
+association_dir="$base_dir/association_lists/"
+university_dir="$base_dir/university_lists/"
+library_dir="$base_dir/library_lists/"
+courses_dir="$base_dir/courses/"
+
+if [ -s "$inbox_dir"new/ ] ; then
+  echo "You have mail."
+elif [ -s "$association_dir"new ] ; then
+  echo "You have Association List mail."
+elif [ -s "$university_dir"new/ ] ; then 
+  echo "You have University List mail."
+elif [ -s "$library_dir"new/ ] ; then
+  echo "You have Library List mail."
+elif [ -s "$courses_dir"new/ ] ; then
+  echo "You have student mail."
+fi
