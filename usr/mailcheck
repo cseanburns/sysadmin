@@ -5,7 +5,7 @@
 # Specifically, check to see if the Maildir new/ is greater than 0
 # Checks several Maildir directories where I receive new email
 
-base_dir="$HOME/Mail/"
+base_dir="$HOME/Mail"
 inbox_dir="$base_dir/INBOX/"
 association_dir="$base_dir/association_lists/"
 university_dir="$base_dir/university_lists/"
