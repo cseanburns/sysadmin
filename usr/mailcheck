@@ -22,4 +22,5 @@ elif [ -s "$library_dir"new/ ] ; then
   echo "You have Library List mail."
 elif [ -s "$courses_dir"new/ ] ; then
   echo "You have student mail."
+else printf "No new mail.\n"
 fi
