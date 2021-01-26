@@ -7,28 +7,29 @@
 
 checkmail() {
 
-# define base email directory
-base_dir="$HOME/Mail"
+  # define base email directory
+  base_dir="$HOME/Mail"
 
-# assign mailboxes to check for new email to an array
-mailboxes=("$base_dir/INBOX/" "$base_dir/association_lists"
-  "$base_dir/university_lists/" "$base_dir/library_lists"
-  "$base_dir/courses/")
+  # assign mailboxes that I want to check for new email to an array
+  # make sure there's an ending forward slash
+  mailboxes=("$base_dir/INBOX/" "$base_dir/association_lists/"
+    "$base_dir/university_lists/" "$base_dir/library_lists/"
+    "$base_dir/courses/")
 
-# loop through each mailbox in array and check if there's email in the
-# new/ Maildir
-#
-# I commented out the two lines below because I'd rather not have anything
-# echo if there's nothing to report, but they're useful for error
-# checking, and so I'll keep them there.
+  # loop through each mailbox in the array and check if there's email in
+  # the new/ Maildir
+  #
+  # I commented out the two lines below because I'd rather not have
+  # anything echo if there's nothing to report, but they're useful for
+  # error checking, and so I'll keep them there.
 
-for mail in "${mailboxes[@]}"; do
-  if [ -s "$mail"new/ ] ; then
-    echo "You have mail in $mail."
-  #else
-  # echo "No new mail in $mail."
-  fi
-done
+  for mail in "${mailboxes[@]}"; do
+    if [ -s "$mail"new/ ] ; then
+      echo "You have mail in $mail."
+#   else
+#      echo "No new mail in $mail."
+    fi
+  done
 
 }
 
