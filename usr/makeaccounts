@@ -24,6 +24,10 @@ is_installed () {
   fi
 }
 
+
+##########################
+# Make sure a group name is supplied. Exit if not.
+##########################
 has_argument () {
   if [[ $# -eq 0 ]] ; then
     echo "Please supply a group name."
