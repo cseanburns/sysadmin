@@ -5,6 +5,6 @@
 # run as root and put in crontab
 # file 'accountsnames' includes user accounts, one line each
 
-while read i ; do
+while read -r i ; do
   lastlog -u "$i"
-done < /root/bin/accountsnames > /root/logs/$(date +%Y-%m-%d).txt
+done < /root/bin/accountsnames > /root/logs/"$(date +%Y-%m-%d)".txt

@@ -9,6 +9,6 @@
 # Each line in user_list_file.csv has one username
 userfile="user_list_file.csv"
 
-while read i ; do
+while read -r i ; do
 	userdel -r "$i"
 done<"$userfile"

@@ -11,4 +11,8 @@
 
 groupA="substitute_name_of_group"
 
-getent group | grep "^$groupA" | cut -d: -f4 | tr , '\n' | echo "There are $(wc -l) accounts in "$groupA"."
+getent group | \
+  grep "^$groupA" | \
+  cut -d: -f4 | \
+  tr , '\n' | \
+  echo "There are $(wc -l) accounts in $groupA."
