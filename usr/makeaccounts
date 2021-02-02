@@ -24,6 +24,13 @@ is_installed () {
   fi
 }
 
+has_argument () {
+  if [[ $# -eq 0 ]] ; then
+    echo "Please supply a group name."
+    exit 0
+  fi
+}
+
 ##########################
 # Make sure account names are all lowercase
 ##########################
@@ -62,10 +69,6 @@ new_shell_accounts () {
   declare -r user_file="users_to_add.txt"
   # Add users to specific group to allow SSH access for the group
   group_name="$1"
-  if [[ $# -eq 0 ]] ; then
-    echo "Please supply a group name."
-    exit 0
-  fi
   if ! grep -qs "$group_name" /etc/group ; then
     printf "Group %s did not exist.\n" "$group_name"
     printf "Creating %s.\n" "$group_name"
@@ -156,6 +159,7 @@ make_class_privileges () {
 
 main ()  {
   is_installed
+  has_argument
   make_names_lower
   check_duplicate_accounts
   new_shell_accounts "$@"
