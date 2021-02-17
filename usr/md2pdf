@@ -13,4 +13,5 @@
 file_0="$1"               # read file name.  Ex: test.md
 file_1="${file_0%.*}"     # strip extension. Ex: test
 
-pandoc -o "${file_1}".odt "${file_0}" | soffice --headless --convert-to pdf "${file_1}".odt
+pandoc -o "${file_1}".odt "${file_0}" | \
+  soffice --headless --convert-to pdf "${file_1}".odt
