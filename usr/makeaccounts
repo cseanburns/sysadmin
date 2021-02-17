@@ -2,7 +2,7 @@
 #
 # Date: February 1, 2021
 # Author: Sean Burns
-# Create new shell accounts.
+# Create new shell accounts on Linux server.
 # Generate MySQL source file to create accounts, databases, etc
 # Dependencies: diceware. MySQL is not necessary. The script only generates a
 # source file for MySQL
@@ -75,6 +75,8 @@ new_shell_accounts () {
   while read -r name ; do
     useradd -m -U -s /bin/bash -G "$group_name" "$name"
   done<"$userfile"
+  # Chmod home directory permissions
+  chmod 701 /home/*
   # Lock .bash_history files
   chattr +a /home/*/.bash_history
   # Get total count of users. Assign number to variable
