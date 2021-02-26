@@ -21,6 +21,7 @@ play_game() {
   end=$(tput sgr0)
 
   x=$((1 + RANDOM % 100))
+  #x=$(seq 1 100 | shuf | head -n1) # an alternate way to choose a number
 
   clear
 
