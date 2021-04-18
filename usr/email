@@ -26,8 +26,6 @@ checkmail() {
   for mail in "${mailboxes[@]}"; do
     if [ -s "$mail"new/ ] ; then
       echo "You have mail in $mail."
-#   else
-#      echo "No new mail in $mail."
     fi
   done
 
