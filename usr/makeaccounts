@@ -85,7 +85,7 @@ new_shell_accounts () {
   # Create passwords for users
   for i in $(seq 1 "$total_users") ; do
     echo "Password $i generated."
-    diceware -s 1 -d "-" -n 3 >> userpw
+    diceware -n 3 >> userpw
   done
   # Join usernames to temporary passwords
   paste -d ":" "$userfile" userpw > pwuser
@@ -105,7 +105,7 @@ create_sql_accounts () {
   # generate passwords
   for i in $(seq 1 "$total_users") ; do
     echo "Password $i generated."
-    diceware -s 1 -d "-" -n 3 >> mysqlpw 
+    diceware -s 1 -n 3 >> mysqlpw 
   done
   # surround passwords with single quotes and end with semi colon 
   sed -i "s/^/'/" mysqlpw
