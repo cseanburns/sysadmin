@@ -12,6 +12,7 @@
 import os
 import time
 
+# Intro
 os.system('clear')
 print("'All right, guys, welcome.'")
 time.sleep(1.5)
@@ -30,6 +31,7 @@ print("Let's do five rounds.")
 time.sleep(2)
 os.system('clear')
 
+# Short breaths
 def breath():
     for i,j in zip(range(1,31), range(1,31)):
         print("Breath in", i)
@@ -37,18 +39,21 @@ def breath():
         print("Breath out", j)
         time.sleep(1.7)
 
+# Long breath hold after last exhale
 def breathout_hold():
     print("Hold breath for 1:30")
     for k in reversed(range(1,91)):
         print(k, "seconds left")
         time.sleep(1)
 
+# Short breath hold after last inhale
 def breathin_hold(): 
     print("Breath in and hold for 15 seconds")
     for l in reversed(range(1,16)):
         print(l, "seconds left")
         time.sleep(1)
 
+# Number of rounds
 def round():
     for m in range(1,6):
         print("Round number ", m)
@@ -57,8 +62,10 @@ def round():
         breathin_hold()
         os.system('clear')
 
+# Run the script
 round()
 
+# End of guided breathing session
 print("'Let it go.'")
 print("'Let your breathing return to normal\
 as you finish up the round.'")
