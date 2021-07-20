@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+
+# A little script that follows the Wim Hof Breathing method
+# Currently hardcoded to do five rounds
+# Usage: ./wimhof
+# Pretty much follows the following video:
+# https://www.youtube.com/watch?v=tybOi4hjZFQ
+# Date: 2021-07-19
+# To do: Make pretty
+
+import os
+import time
+
+os.system('clear')
+print("'All right, guys, welcome.'")
+time.sleep(1.5)
+print("'This is a guided breathing session.'")
+time.sleep(1.5)
+print("'Relax to the deepest.'")
+time.sleep(1.5)
+print("'Whatever it takes, relax.'")
+time.sleep(1.5)
+print("'Are you ready?'")
+time.sleep(1.5)
+print("'Here we go.' --Wim Hof")
+time.sleep(1.5)
+os.system('clear')
+print("Let's do five rounds.")
+time.sleep(2)
+os.system('clear')
+
+def breath():
+    for i,j in zip(range(1,31), range(1,31)):
+        print("Breath in", i)
+        time.sleep(1.7)
+        print("Breath out", j)
+        time.sleep(1.7)
+
+def breathout_hold():
+    print("Hold breath for 1:30")
+    for k in reversed(range(1,91)):
+        print(k, "seconds left")
+        time.sleep(1)
+
+def breathin_hold(): 
+    print("Breath in and hold for 15 seconds")
+    for l in reversed(range(1,16)):
+        print(l, "seconds left")
+        time.sleep(1)
+
+def round():
+    for m in range(1,6):
+        print("Round number ", m)
+        breath()
+        breathout_hold()
+        breathin_hold()
+        os.system('clear')
+
+round()
+
+print("'Let it go.'")
+print("'Let your breathing return to normal as you finish up the round.'")
+print("'Move your body bit by bit, starting with your fingers and your toes.'")
+print("'Let your breathing normalize.' --Wim Hof")
