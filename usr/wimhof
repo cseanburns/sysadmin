@@ -83,7 +83,7 @@ def play_closing():
 # Number of rounds
 def round():
     args = take_input()
-    #play_intro()
+    play_intro()
     for m in range(1,args.total_rounds + 1):
         print("ROUND NUMBER ", m)
         breath()
