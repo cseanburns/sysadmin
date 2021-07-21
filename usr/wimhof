@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
 # A little script that follows the Wim Hof Breathing method
-# Currently hardcoded to do five rounds
-# Usage: ./wimhof
+# Usage: ./wimhof [short_breaths] [long_breath_hold] [total_rounds]
 # Pretty much follows the following video:
 # https://www.youtube.com/watch?v=tybOi4hjZFQ
 # Date: 2021-07-19
@@ -38,7 +37,7 @@ def take_input():
             help = "Number of short breaths (standard 30).",
             type = int)
     parser.add_argument("long_breaths",
-            help = "Duration of long breaths (standard 190).",
+            help = "Duration of long breath hold (standard 190).",
             type = int)
     parser.add_argument("total_rounds",
             help = "Total number of rounds (standard 3).",
