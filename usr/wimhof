@@ -7,33 +7,49 @@
 # https://www.youtube.com/watch?v=tybOi4hjZFQ
 # Date: 2021-07-19
 # To do: Make pretty
-# To do: Add command line arguments
+# To do: use ctrl-c to cleanly exit before concluding
 
 import os
 import time
+import argparse
 
 # Intro
-os.system('clear')
-print("'All right, guys, welcome.'")
-time.sleep(1.5)
-print("'This is a guided breathing session.'")
-time.sleep(1.5)
-print("'Relax to the deepest.'")
-time.sleep(1.5)
-print("'Whatever it takes, relax.'")
-time.sleep(1.5)
-print("'Are you ready?'")
-time.sleep(1.5)
-print("'Here we go.' --Wim Hof")
-time.sleep(1.5)
-os.system('clear')
-print("Let's do five rounds.")
-time.sleep(2)
-os.system('clear')
+def play_intro():
+    os.system('clear')
+    print("'All right, guys, welcome.'")
+    time.sleep(1.5)
+    print("'This is a guided breathing session.'")
+    time.sleep(1.5)
+    print("'Relax to the deepest.'")
+    time.sleep(1.5)
+    print("'Whatever it takes, relax.'")
+    time.sleep(1.5)
+    print("'Are you ready?'")
+    time.sleep(1.5)
+    print("'Here we go.' --Wim Hof")
+    time.sleep(1.5)
+    os.system('clear')
+
+# CLI arguments to adjust short breaths,
+# long breaths, and total rounds
+def take_input():
+    parser = argparse.ArgumentParser(description = "Practice the Wim Hof Breathing Method")
+    parser.add_argument("short_breaths",
+            help = "Number of short breaths (enter 30).",
+            type = int)
+    parser.add_argument("long_breaths",
+            help = "Duration of long breaths (enter 190).",
+            type = int)
+    parser.add_argument("total_rounds",
+            help = "Total number of rounds (enter 3).",
+            type = int)
+    args = parser.parse_args()
+    return args
 
 # Short breaths
 def breath():
-    for i,j in zip(range(1,31), range(1,31)):
+    args = take_input()
+    for i,j in zip(range(1,args.short_breaths + 1), range(1,args.short_breaths + 1)):
         print("Breath in", i)
         time.sleep(1.7)
         print("Breath out", j)
@@ -41,8 +57,9 @@ def breath():
 
 # Long breath hold after last exhale
 def breathout_hold():
+    args = take_input()
     print("Hold breath for 1:30")
-    for k in reversed(range(1,91)):
+    for k in reversed(range(1,args.long_breaths + 1)):
         print(k, "seconds left")
         time.sleep(1)
 
@@ -53,22 +70,29 @@ def breathin_hold():
         print(l, "seconds left")
         time.sleep(1)
 
+# End of guided breathing session
+def play_closing():
+    print("'Let it go.'")
+    time.sleep(1.5)
+    print("'Let your breathing return to normal as you finish up the round.'")
+    time.sleep(1.5)
+    print("'Move your body bit by bit, starting with your fingers and your toes.'")
+    time.sleep(1.5)
+    print("'Let your breathing normalize.' --Wim Hof")
+    time.sleep(1.5)
+
 # Number of rounds
 def round():
-    for m in range(1,6):
-        print("Round number ", m)
+    args = take_input()
+    #play_intro()
+    for m in range(1,args.total_rounds + 1):
+        print("ROUND NUMBER ", m)
         breath()
         breathout_hold()
         breathin_hold()
         os.system('clear')
+    play_closing()
 
 # Run the script
 round()
 
-# End of guided breathing session
-print("'Let it go.'")
-print("'Let your breathing return to normal\
-as you finish up the round.'")
-print("'Move your body bit by bit,\
-starting with your fingers and your toes.'")
-print("'Let your breathing normalize.' --Wim Hof")
