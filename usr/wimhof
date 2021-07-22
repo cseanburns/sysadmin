@@ -6,7 +6,8 @@
 # https://www.youtube.com/watch?v=tybOi4hjZFQ
 # Date: 2021-07-19
 # To do: Make pretty
-# To do: use ctrl-c to cleanly exit before concluding
+# To do: press 'q' to exit early
+# To do: press 'p' to pause anywhere in the program
 
 import os
 import time
