@@ -6,16 +6,18 @@
 # https://www.youtube.com/watch?v=tybOi4hjZFQ
 # Date: 2021-07-19
 # To do: Make pretty
-# To do: press 'q' to exit early
 # To do: press 'p' to pause anywhere in the program
 
 import os
 import time
 import argparse
+import sys
 
 # Intro
 def play_intro():
     os.system('clear')
+    print("Press Ctrl-c at any time to quit")
+    time.sleep(1.5)
     print("'All right, guys, welcome.'")
     time.sleep(1.5)
     print("'This is a guided breathing session.'")
@@ -81,17 +83,21 @@ def play_closing():
     print("'Let your breathing normalize.' --Wim Hof")
     time.sleep(1.5)
 
-# Number of rounds
+# Define the order and number of rounds
 def round():
-    args = take_input()
-    play_intro()
-    for m in range(1,args.total_rounds + 1):
-        print("ROUND NUMBER ", m)
-        breath()
-        breathout_hold()
-        breathin_hold()
-        os.system('clear')
-    play_closing()
+    while True:
+        try:
+            args = take_input()
+            play_intro()
+            for m in range(1,args.total_rounds + 1):
+                print("ROUND NUMBER ", m)
+                breath()
+                breathout_hold()
+                breathin_hold()
+                os.system('clear')
+            play_closing()
+        except (KeyboardInterrupt):
+            sys.exit("You pressed Ctrl-c to stop early.")
 
 # Run the script
 round()
