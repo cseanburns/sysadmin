@@ -6,7 +6,7 @@
 # https://www.youtube.com/watch?v=tybOi4hjZFQ
 # Date: 2021-07-19
 # To do: Make pretty
-# To do: press 'p' to pause anywhere in the program
+# To do: Press a key to end the long_breath_hold early
 
 import os
 import time
@@ -17,6 +17,7 @@ import sys
 def play_intro():
     os.system('clear')
     print("Press Ctrl-c at any time to quit")
+    print("For *nix machines, press Ctrl-z to pause and fg to unpause")
     time.sleep(1.5)
     print("'All right, guys, welcome.'")
     time.sleep(1.5)
