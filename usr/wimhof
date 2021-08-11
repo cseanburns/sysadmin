@@ -58,7 +58,7 @@ def breath():
 # Long breath hold after last exhale
 def breathout_hold():
     args = take_input()
-    print("Hold breath for 1:30")
+    print(f"Hold breath for {args.long_breaths} seconds")
     for k in reversed(range(1,args.long_breaths + 1)):
         print(k, "seconds left")
         time.sleep(1)
