@@ -8,11 +8,6 @@
 # To do: Make pretty
 # To do: Press a key to end the long_breath_hold early
 
-import os
-import time
-import argparse
-import sys
-
 # Intro
 def play_intro():
     os.system('clear')
@@ -82,7 +77,7 @@ def play_closing():
     print("'Move your body bit by bit, starting with your fingers and your toes.'")
     time.sleep(1.5)
     print("'Let your breathing normalize.' --Wim Hof")
-    time.sleep(1.5)
+    sys.exit()
 
 # Define the order and number of rounds
 def round():
@@ -101,5 +96,10 @@ def round():
             sys.exit("You pressed Ctrl-c to stop early.")
 
 # Run the script
-round()
+if __name__ == '__main__':
+    import os
+    import time
+    import argparse
+    import sys
+    round()
 
