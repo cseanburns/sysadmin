@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Description: Get counts of Linux users in particular group
 # Date: Fri Sep 14 09:34:02 EDT 2018

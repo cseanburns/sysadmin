@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Date: February 12, 2021
 # Add users in batch to MySQL database for Omeka
@@ -20,7 +20,6 @@ for i in $(seq 1 "$total_users") ; do
   echo "Password $i generated."
   diceware -s 1 -d "-" -n 3 >> mysqlpasses 
 done
-
 
 # Join usernames to temporary passwords
 paste -d ":" "$userfile" mysqlpasses > pwuser
