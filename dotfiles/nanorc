@@ -1,0 +1,55 @@
+# set element fgcolor,bgcolor
+set titlecolor brightwhite,blue
+set statuscolor brightwhite,green
+#set errorcolor brightwhite,red
+set selectedcolor brightwhite,magenta
+#set stripecolor ,yellow
+set numbercolor cyan
+set keycolor cyan
+set functioncolor green
+
+set speller "aspell -x -c"
+
+
+## When soft line wrapping is enabled, make it wrap lines at blanks
+## (tabs and spaces) instead of always at the edge of the screen.
+set atblanks
+
+## Use auto-indentation.
+set autoindent
+
+## Back up files to the current filename plus a tilde.
+# set backup
+
+## The directory to put unique backup files in.
+# set backupdir ""
+
+## Use bold text instead of reverse video text.
+set boldtext
+
+## Remember the used search/replace strings for the next session.
+set historylog
+
+## Display line numbers to the left of the text.
+set linenumbers
+
+## Enable vim-style lock-files.  This is just to let a vim user know you
+## are editing a file [s]he is trying to edit and vice versa.  There are
+## no plans to implement vim-style undo state in these files.
+set locking
+
+## Remember the cursor position in each file for the next editing session.
+set positionlog
+## (The old form, 'poslog', is deprecated.)
+
+## Do extended regular expression searches by default.
+#set regexp
+
+## Allow nano to be suspended.
+set suspend
+
+## Use this tab size instead of the default; it must be greater than 0.
+set tabsize 2
+
+## Convert typed tabs to spaces.
+set tabstospaces
