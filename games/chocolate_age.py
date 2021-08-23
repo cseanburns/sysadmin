@@ -122,8 +122,8 @@ def completion():
 
     chocolates = chocolates - birthyear
 
-    print(f"{new_line}The first digit is the number of chocolates you chose{new_line}.")
-    print(f"The last two digits are your age. {new_line}")
+    print(f"{new_line}The first digit is the number of chocolates you chose.{new_line}")
+    print(f"The last two digits are your age.{new_line}")
     print(chocolates)
     print(f"{new_line}")
 
