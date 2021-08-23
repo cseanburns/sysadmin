@@ -1,0 +1,2 @@
+# disable pasting with middle mouse button 
+echo -n | xsel -n -i; pkill xbindkeys; xdotool click 2; xbindkeys

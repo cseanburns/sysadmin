@@ -73,7 +73,7 @@ new_shell_accounts () {
   fi
   # Create new user accounts
   while read -r name ; do
-    useradd -m -U -s /bin/bash -G "$group_name" "$name"
+    useradd -m -U -s /usr/bin/bash -G "$group_name" "$name"
   done<"$userfile"
   # Chmod home directory permissions
   chmod 701 /home/*

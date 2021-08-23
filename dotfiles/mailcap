@@ -1,0 +1,9 @@
+image/*; eog '%s'
+text/html; w3m -I %{charset} -T text/html; copiousoutput;
+audio/*; play '%s'
+#application/pdf; mupdf '%s'
+application/pdf; evince '%s'
+application/force-download; evince '%s'
+application/x-msword; soffice --nologo --writer '%s'
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; soffice --nologo --writer '%s'
+application/vnd.oasis.opendocument.text; soffice --nologo --writer '%s'
