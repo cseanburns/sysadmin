@@ -2,7 +2,7 @@
 
 ## Date: Wed Sep 19 00:08:32 EDT 2018
 
-Scripts I use to manage a server or to teach sysadmin work
+Originally these were only scripts I use to manage a server or to teach sysadmin work, but now they also include silly little Python or Bash games that I write for fun.
 
 ---
 
