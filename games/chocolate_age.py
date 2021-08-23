@@ -2,6 +2,7 @@
 
 # I remembered this old email puzzle that was passed around about in the
 # mid-aughts, and I thought I'd recreated it for the kids
+# steps based on those reported here: http://www.murderousmaths.co.uk/games/choc/agebychoc.htm
 
 # Date: Sun Aug 22 09:18:31 PM EDT 2021
 
@@ -54,6 +55,7 @@ def birth():
     while True:
         try:
             birthyear = int(input("What year were you born? "))
+            time.sleep(1)   
             if birthyear >= 1922 and birthyear <= 2020:
                 return birthyear 
             else:
@@ -66,7 +68,6 @@ def the_year():
     new_line = '\n'
     year = datetime.datetime.today().year
     return year
-    print(f"It is the year {year}.{new_line}")
 
 def had_birthday():
     # ask if had birthday and then perform steps based on current year and if
@@ -121,8 +122,8 @@ def completion():
 
     chocolates = chocolates - birthyear
 
-    print(f"{new_line}The first digit is the number of chocolates you chose")
-    print(f"And the last two digits are your age. {new_line}")
+    print(f"{new_line}The first digit is the number of chocolates you chose{new_line}.")
+    print(f"The last two digits are your age. {new_line}")
     print(chocolates)
     print(f"{new_line}")
 
