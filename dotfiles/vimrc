@@ -78,7 +78,7 @@ set magic
 set showmatch                               " highlight matching [{()}]
 set noerrorbells visualbell t_vb=           " Disable annoying error noises
 set number                                  " set line numbers
-set relativenumber                          " set relative numbering
+"set relativenumber                          " set relative numbering
 set shortmess+=I                            " disable startup message
 set splitbelow                              " open new vertical splits bottom
 set splitright                              " open new horizontal splits right
