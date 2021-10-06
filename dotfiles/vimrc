@@ -45,13 +45,11 @@ Plugin 'Ron89/thesaurus_query.vim'
 Plugin 'dpelle/vim-LanguageTool'  " Grammar checker
 Plugin 'jalvesaq/zotcite'         " Zotero integration
 Plugin 'junegunn/vim-easy-align'  " Prettify markdown tables
+Plugin 'ap/vim-buftabline'
 
 " Colorschemes
 Plugin 'franbach/miramare'
 "colorscheme miramare
-
-Plugin 'pgavlin/pulumi.vim'
-colorscheme pulumi
 
 " Now we can turn our filetype functionality back on
 filetype plugin indent on
@@ -157,4 +155,9 @@ let g:languagetool_lang='en-US'
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g., gaip)
 nmap ga <Plug>(EasyAlign)
+
+" For buftabline plugin (Buffer management)
+set hidden
+nnoremap <C-N> :bnext<CR>
+nnoremap <C-P> :bprev<CR>
 
