@@ -89,7 +89,7 @@ set tabstop=2
 set shiftwidth=2 softtabstop=2
 set nojoinspaces
 set showcmd                                 " show command in bottom bar
-set cursorline                              " highlight cursor line
+"set cursorline                              " highlight cursor line
 let g:limelight_conceal_ctermfg = 'gray'    " to fix colorscheme
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
