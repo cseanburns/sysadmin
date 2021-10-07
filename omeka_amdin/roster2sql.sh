@@ -54,7 +54,7 @@ done > userids
 
 # add userids to $roster
 paste -d" " userids "$roster" > tmp.file && \
-  /usr/bin/mv tmp.file "$roster" && \
+  /usr/bin/mv tmp.file "$roster"
 
 # Add extra active and role columns at the end
 for i in $(seq "$totalusers") ; do
@@ -76,16 +76,19 @@ sed -i 's/$/),/' "$roster"
 sed -i '$ s/,$/;/' "$roster"
 
 # add the first comma
-sed -i 's/ /, "/' "$roster"
+sed -i 's/ /, /' "$roster"
 
 # add the second comma
-sed -i 's/ /", "/2' "$roster"
+sed -i 's/ /, /2' "$roster"
 
 # add the third comma
-sed -i 's/ /", "/3' "$roster"
+sed -i 's/ /, "/3' "$roster"
 
 # add the final comma
 sed -i 's/,/",/4' "$roster"
+
+# remove extra space after name (need to fix this so not needed)
+sed -i 's/ "/"/g' "$roster"
 
 # add to top of file
 sed -i '1 i\insert into omeka_users(id, email, username, name, active, role) values' "$roster"
