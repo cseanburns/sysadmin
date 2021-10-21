@@ -48,7 +48,7 @@ Plugin 'junegunn/vim-easy-align'  " Prettify markdown tables
 Plugin 'ap/vim-buftabline'
 
 " Colorschemes
-Plugin 'franbach/miramare'
+" Plugin 'franbach/miramare'
 "colorscheme miramare
 
 " Now we can turn our filetype functionality back on
@@ -60,8 +60,7 @@ set omnifunc=syntaxcomplete#Complete
 " UI
 syntax on
 set background=dark " set to dark for most other colorschemes
-set t_Co=256
-set path+=**
+set path=$PWD/**
 set wildmenu
 set wildmode=list:longest,full
 set backspace=indent,eol,start
@@ -80,7 +79,7 @@ set number                                  " set line numbers
 set shortmess+=I                            " disable startup message
 set splitbelow                              " open new vertical splits bottom
 set splitright                              " open new horizontal splits right
-set scrolloff=12                            " Keep cursor near middle of screen
+" set scrolloff=12                            " Keep cursor near middle of screen
 set textwidth=80
 set autoindent
 set expandtab
@@ -161,3 +160,5 @@ set hidden
 nnoremap <C-N> :bnext<CR>
 nnoremap <C-P> :bprev<CR>
 
+" netrw
+let g:netrw_winsize = 25
