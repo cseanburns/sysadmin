@@ -11,4 +11,4 @@ userfile="user_list_file.csv"
 
 while read -r i ; do
 	userdel -r "$i"
-done<"$userfile"
+done<"${userfile}"
