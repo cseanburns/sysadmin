@@ -2,9 +2,9 @@
 
 #=====================================================================
 # 
-# FILE: mass_email.sh
+# FILE: mass_email
 #
-# USAGE: ./mass_email.sh
+# USAGE: ./mass_email
 #       
 # DESCRIPTION: Sends emails to a list of recipients in a CSV file (data.csv) 
 # the contents of a text file (letter.html). Make sure both CSV file and HTML 
@@ -39,9 +39,9 @@ do
     name=$(echo "$line" | awk -F',' '{print $2}')
     email=$(echo "$line" | awk -F',' '{print $3}')
     CC=$(echo "$line" | awk -F',' '{print $4}')
-    sed -e "s/<<name>>/$name/g" -e "s/<<title>>/$title/g" letter.html | \
-        mutt -c "$CC" -s "$title" + Subject Text \
-        -e "set content_type=text/html" "$email"
+    sed -e "s/<<name>>/${name}/g" -e "s/<<title>>/${title}/g" letter.html | \
+        mutt -c "${CC}" -s "${title}" + Subject Text \
+        -e "set content_type=text/html" "${email}"
         # alternatively:
         # "-e my_hdr Content-Type: text/html" "$email"
     sleep 1
