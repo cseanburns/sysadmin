@@ -1,30 +1,39 @@
 #!/usr/bin/env python3
 
-# Use as a countdown timer
-# Usage: timer
-# Enter whole, positive number at the prompt
-# Date: 2021-07-16
+""" Use as a countdown timer.
 
-import os 
+Usage: timer
+Enter whole, positive number at the prompt
+Date: 2021-07-16
+"""
+
+import os
 import time
 
 os.system('clear')
 
-# Function to take a positive, whole number 
 def check_input():
+    """ Function to take a positive, whole number
+
+    Arg:
+        none
+
+    Example:
+       timer_prompt
+   """
+
     while True:
         try:
             count_start = int(input("Start number: "))
             if count_start >= 1:
                 os.system('clear')
                 return count_start
-            else:
-                print("Enter a whole, positive number. Try again.")
-        except (ValueError):
+        except ValueError:
             print("Enter whole, positive number. Try again.")
 
-# Do the countdown
 def timer():
+    """ Do the countdown """
+
     count_start = check_input()
     for count_start in reversed(range(count_start)):
         print(count_start)
@@ -32,6 +41,6 @@ def timer():
         os.system('clear')
     print("Countdown over.")
 
-# Call timer function 
+# Call timer function
 if __name__ == '__main__':
     timer()
