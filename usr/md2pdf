@@ -5,7 +5,7 @@
 ## Convert markdown file to PDF
 ## Pandoc's PDF conversion uses LaTeX; this just requires LibreOffice
 ##
-## comand line usage: md_to_pdf.sh test.md
+## comand line usage: md2pdf test.md
 ##
 ## non-script usage:
 ## pandoc -o test.odt test.md | soffice --headless --convert-to pdf test.odt
