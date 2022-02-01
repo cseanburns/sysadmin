@@ -11,7 +11,7 @@ total_students=$(grep "students" /etc/group | \
   sed -s 's/,/\n/g' | \
   wc -l)
 
-printf "\nThere are %s student accounts.\n" "$total_students"
+printf "\nThere are %s student accounts.\n" "${total_students}"
 
 printf "\nThey include the following:\n"
 
