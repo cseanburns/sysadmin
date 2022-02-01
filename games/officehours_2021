@@ -9,7 +9,7 @@ import os
 from datetime import datetime
 
 DAY = datetime.today().strftime('%a')
-OFFICEDAYS = ("Mon", "Tue", "Wed", "Thu", "Fri")
+OFFICE_DAYS = ("Mon", "Tue", "Wed", "Thu", "Fri")
 WEEKEND = ("Sat", "Sun")
 EMAIL = "myemail@uky.edu"
 NAME = "Sean Burns"
@@ -22,7 +22,7 @@ os.system("clear")
 print(f"Here works {NAME}, an {RANK} at the {UNIT}.\n")
 print(f"Today is {DAY}.\n")
 
-if DAY in OFFICEDAYS:
+if DAY in OFFICE_DAYS:
     print(f"If today is {DAY}, then I am available.\n")
     print(f"Please knock on door, email me at {EMAIL}, or call at {PHONE}.")
 elif DAY in WEEKEND:
