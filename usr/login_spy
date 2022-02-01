@@ -2,7 +2,9 @@
 # Date: 2020-08-24
 
 # check to see if users are logging in and running commands
+#
 # run as root and put in crontab
+#
 # file 'accountsnames' includes user accounts, one line each
 
 while read -r i ; do
