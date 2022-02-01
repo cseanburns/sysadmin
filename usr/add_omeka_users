@@ -5,22 +5,22 @@
   
 ## This is unfinished
 
-declare -r userfile="omeka_users.csv"
-total_users=$(wc -l < "$userfile")
+declare -r user_file="omeka_users.csv"
+total_users=$(wc -l < "${user_file}")
 
 # Create salts for users
-for i in $(seq 1 "$total_users") ; do
+for i in $(seq 1 "${total_users}") ; do
   echo "Salt $i generated."
   < /dev/urandom tr -dc A-Z-a-z-0-9 | \
     head -c16 >> salts.dat ; echo -e "\n" >> salts.dat
 done
 
 # Create MySQL passwords for users
-for i in $(seq 1 "$total_users") ; do
+for i in $(seq 1 "${total_users}") ; do
   echo "Password $i generated."
   diceware -s 1 -d "-" -n 3 >> mysqlpasses 
 done
 
 # Join usernames to temporary passwords
-paste -d ":" "$userfile" mysqlpasses > pwuser
+paste -d ":" "${user_file}" mysqlpasses > pwuser
 
