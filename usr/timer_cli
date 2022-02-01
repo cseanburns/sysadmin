@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
-# Use as a countdown timer
-# Usage: timer [arg]
-# where [arg] is a positive number
-# Date: 2021-07-16
+""" User as a countdown timer.
+
+Usage: timer [arg]
+where [arg] is a positive number
+Date: 2021-07-16
+"""
 
 import os
 import time
