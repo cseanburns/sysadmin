@@ -24,3 +24,8 @@ $ mysql -u database_name -p
 mysql> use lis602_omeka;
 mysql> source roster.sql
 ```
+
+## Bugs / TODO
+
+1. For multiple sections, need to adjust ID number sequence to avoid redundant ID generation
+2. Emails and usernames are missing quotes around those fields in the roster.sql file
