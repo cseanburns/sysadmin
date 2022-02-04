@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
+
 """
-Random Number Guessing Game
-by Sean Burns
+A simple random number guessing game
 Guess a number between 1 and 1000
 Wed 12 Dec 2018
 
 TODO:
 1. Track score history
 2. Tell players how many guesses it took to get the correct guess
-3. Generate a plot (pyplot) plotting each random number as they play
+3. Generate a ascii plot plotting each random number as they play
 """
 
 import os
@@ -17,8 +17,7 @@ from colorama import Fore
 
 def playgame():
     """
-    This function sets a random number, asks user for a number as an integer,
-    then proceeds to ask for numbers until the guess equals the random number.
+    Sets a random number, ask player for input, keep guessing until correct.
     """
     # Clear screen
     os.system('clear')
@@ -58,7 +57,7 @@ def playgame():
 
 def playagain():
     """
-    This function lets user play again if they want.
+    Ask players if they want to play again. 
     """
     while True:
         replay = input(Fore.WHITE + "Play again? Enter y or n. ").upper()
@@ -72,7 +71,9 @@ def playagain():
             print(Fore.RED + "Sorry, I don't understand.")
 
 def main():
-    """ This function allows the script to run as a standalone program."""
+    """
+    Play the game. 
+    """
     playgame()
     playagain()
 
