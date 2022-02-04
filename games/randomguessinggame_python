@@ -57,7 +57,7 @@ def playgame():
 
 def playagain():
     """
-    Ask players if they want to play again. 
+    Ask players if they want to play again.
     """
     while True:
         replay = input(Fore.WHITE + "Play again? Enter y or n. ").upper()
@@ -72,7 +72,7 @@ def playagain():
 
 def main():
     """
-    Play the game. 
+    Play the game.
     """
     playgame()
     playagain()
