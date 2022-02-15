@@ -20,29 +20,27 @@ roster="roster.csv"
 sed -i '1,2d' "$roster"
 
 # Keep only needed columns:
-awk -F',' '{ print $1, $2, $4, $5 }' "$roster" > tmp.file && \
+awk -F',' '{ print $1, $2, tolower($4), tolower($5) }' "$roster" > tmp.file && \
   /usr/bin/mv tmp.file "$roster" 
 
-# add commas as a field delimiter
+# add comma after name
 ## replace the second quote 
 sed -i 's/"/,/2' "$roster"
 ## replace the first quote 
 sed -i 's/^"//' "$roster"
 ## get rid of double spaces, if any
 sed -i 's/  / /g' "$roster"
-## remove any spaces around commas
-sed -i 's/ , /, /g' "$roster"
 
-# Get email and username columns
+# Rearrange columns:
+# email, username, first name last name 
 awk '{ print $NF, $(NF - 1), $2, $1 }' "$roster" > tmp.file && \
   /usr/bin/mv tmp.file "$roster"
 
-# Remove any leftover commas
-sed -i 's/,//g' "$roster"
-
-# lowercase emails and usernames
-awk '{ print tolower($1), tolower($2), $3, $4 }' "$roster" > tmp.file && \
-  /usr/bin/mv tmp.file "$roster"
+# Add quotes around fields
+sed -i 's/^/"/' "$roster"
+sed -i 's/ /","/' "$roster"
+sed -i 's/ /","/' "$roster"
+sed -i 's/$/"/' "$roster"
 
 # Get total count of users
 totalusers=$(wc -l < "$roster")
@@ -55,14 +53,15 @@ done > userids
 # add userids to $roster
 paste -d" " userids "$roster" > tmp.file && \
   /usr/bin/mv tmp.file "$roster"
+sed -i 's/ /,/' "$roster"
 
 # Add extra active and role columns at the end
 for i in $(seq "$totalusers") ; do
-  echo ', "1", "contributor"'
+  echo '"1","contributor"'
 done > roles
 
 # add active and role columsn to end of $roster
-paste -d" " "$roster" roles > tmp.file && \
+paste -d"," "$roster" roles > tmp.file && \
   /usr/bin/mv tmp.file "$roster" && \
   /usr/bin/rm roles 
 
@@ -75,20 +74,9 @@ sed -i 's/$/),/' "$roster"
 # replace comma on last line with semicolon
 sed -i '$ s/,$/;/' "$roster"
 
-# add the first comma
-sed -i 's/ /, /' "$roster"
-
-# add the second comma
-sed -i 's/ /, /2' "$roster"
-
-# add the third comma
-sed -i 's/ /, "/3' "$roster"
-
-# add the final comma
-sed -i 's/,/",/4' "$roster"
-
-# remove extra space after name (need to fix this so not needed)
+# remove extra spaces 
 sed -i 's/ "/"/g' "$roster"
+sed -i 's/" /"/g' "$roster"
 
 # add to top of file
 sed -i '1 i\insert into omeka_users(id, email, username, name, active, role) values' "$roster"
