@@ -80,7 +80,7 @@ set shortmess+=I                            " disable startup message
 set splitbelow                              " open new vertical splits bottom
 set splitright                              " open new horizontal splits right
 " set scrolloff=12                            " Keep cursor near middle of screen
-set textwidth=80
+set textwidth=75
 set autoindent
 set expandtab
 set smarttab
