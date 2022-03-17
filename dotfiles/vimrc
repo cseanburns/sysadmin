@@ -11,56 +11,45 @@ noremap <silent> <F5> :source ~/.vimrc
 " do a word count
 noremap <silent> <F7> g<C-G>
 
-" ===== BEGIN VUNDLE SETUP =====
-
-" Guide: https://tinyurl.com/mwm8dsp
-" Vundle package can be found on Github
-" For GitHub repos, specify plugins using the 'user/repository' format
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Plugin 'gmarik/vundle'
+" Load plugins using vim-plug
+" https://github.com/junegunn/vim-plug
+call plug#begin('~/.vim/plugged')
 
 " For CSS
-Plugin 'ap/vim-css-color'
+Plug 'ap/vim-css-color'
 
 " For R integration
-Plugin 'jalvesaq/Nvim-R'
-Plugin 'gaalcaras/ncm-R'
+Plug 'jalvesaq/Nvim-R'
+Plug 'gaalcaras/ncm-R'
+
+" Code commenting
+Plug 'tpope/vim-commentary'
 
 " For Git
-Plugin 'airblade/vim-gitgutter'
-set updatetime=100
-
-" For time management
-Plugin 'aserebryakov/vim-todo-lists'
+"Plug 'airblade/vim-gitgutter'
 
 " For writing
-Plugin 'junegunn/goyo.vim'        " center writing screen
-Plugin 'junegunn/limelight.vim'   " highlights line
-Plugin 'reedes/vim-pencil'
-Plugin 'reedes/vim-wordy'
-Plugin 'godlygeek/tabular'
-Plugin 'Ron89/thesaurus_query.vim' 
-Plugin 'dpelle/vim-LanguageTool'  " Grammar checker
-Plugin 'jalvesaq/zotcite'         " Zotero integration
-Plugin 'junegunn/vim-easy-align'  " Prettify markdown tables
-Plugin 'ap/vim-buftabline'
+" Center writing screen
+Plug 'junegunn/goyo.vim'        
+" Highlights line
+Plug 'junegunn/limelight.vim'   
+Plug 'reedes/vim-pencil'
+Plug 'reedes/vim-wordy'
+Plug 'godlygeek/tabular'
+Plug 'Ron89/thesaurus_query.vim' 
+" Zotero integration
+Plug 'jalvesaq/zotcite'         
 
-" Colorschemes
-" Plugin 'franbach/miramare'
-"colorscheme miramare
+" Initialize plugin system
+call plug#end()
 
-" Now we can turn our filetype functionality back on
-filetype plugin indent on
-set omnifunc=syntaxcomplete#Complete
-
-" ===== END VUNDLE SETUP =====
+" For vim-gitgutter
+"set updatetime=100
 
 " UI
 syntax on
 set background=dark " set to dark for most other colorschemes
-set path=$PWD/**
+set path+=**
 set wildmenu
 set wildmode=list:longest,full
 set backspace=indent,eol,start
@@ -75,12 +64,10 @@ set magic
 set showmatch                               " highlight matching [{()}]
 set noerrorbells visualbell t_vb=           " Disable annoying error noises
 set number                                  " set line numbers
-"set relativenumber                          " set relative numbering
 set shortmess+=I                            " disable startup message
 set splitbelow                              " open new vertical splits bottom
 set splitright                              " open new horizontal splits right
-" set scrolloff=12                            " Keep cursor near middle of screen
-set textwidth=75
+set textwidth=79
 set autoindent
 set expandtab
 set smarttab
@@ -88,11 +75,14 @@ set tabstop=2
 set shiftwidth=2 softtabstop=2
 set nojoinspaces
 set showcmd                                 " show command in bottom bar
-"set cursorline                              " highlight cursor line
+"set relativenumber                         " set relative numbering
+"set scrolloff=12                           " Keep cursor near middle of screen
+"set cursorline                             " highlight cursor line
 let g:limelight_conceal_ctermfg = 'gray'    " to fix colorscheme
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 autocmd! User GoyoEnter set nocursorline    " disable cursorline in Goyo
+let g:goyo_width = 60
 
 " Text 
 set encoding=utf-8                          " set encoding to utf-8
@@ -123,13 +113,20 @@ noremap <C-t> <C-w><C-r>
 " Move to other pane
 nnoremap <C-d> <C-W>w
 
+" Omnicompletion (e.g., ZotCite)
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
+" ZotCite
+let $ZCitationTemplate = '{author}{year}'
+
 " R integration
 let Rnvimpager="vertical"
 let R_editor_w=80
+let R_objbr_place = "RIGHT"
 
 " For Pencil Plugin
 let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
-
 augroup pencil
   autocmd!
   autocmd FileType md,markdown,mkd call pencil#init()
@@ -141,24 +138,12 @@ augroup END
 " Activate Goyo and Pencil with F12
 noremap <F12> :Goyo <bar> :TogglePencil <CR>
 
-" LanguageTool setup
-let g:languagetool_jar='$HOME/bin/LanguageTool-5.1/languagetool-commandline.jar'
-let g:languagetool_lang='en-US'
+" Use % to jump to matches
+" documentation: https://github.com/chrisbra/matchit/blob/master/doc/matchit.txt
+packadd! matchit
 
-" vim-easy-align plugin to prettify markdown tables
-" align github-flavored markdown tables
-" start interactive EasyAlign in visual mode (e.g., vipga)
-" see https://github.com/junegunn/vim-easy-align/blob/master/EXAMPLES.md
-" To align a markdown table, press:
-" vipga *|
-xmap ga <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g., gaip)
-nmap ga <Plug>(EasyAlign)
-
-" For buftabline plugin (Buffer management)
-set hidden
-nnoremap <C-N> :bnext<CR>
-nnoremap <C-P> :bprev<CR>
-
-" netrw
-let g:netrw_winsize = 25
+ab alise Association for Library and Information Science Education
+ab asist Association of Information Science & Technology
+ab uk University of Kentucky
+ab cci College of Communication and Information
+ab sis School of Information Science
