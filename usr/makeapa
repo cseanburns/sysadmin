@@ -1,0 +1,23 @@
+#!/usr/bin/bash
+
+# Date: 2022-3-14
+# Convert a markdown file into an APA formatted file. 
+# To be used with the Zotcite plugin for Zotero and Vim 
+# Demo: https://cseanburns.net/WWW/my-plain-text-social-science.html
+
+makeapa () {
+  local sourcefile="$1"
+  local zotfile="${HOME}/.vim/plugged/zotcite/python3/zotref.py"
+  local apafile="${HOME}/Zotero/styles/apa.csl"
+  pandoc "${sourcefile}" -s -o \
+    "$(basename -s md "$sourcefile")"html -F\
+    "${zotfile}" --citeproc --csl "${apafile}"
+}
+
+makeapa "$@"
+
+# An example command that is not generalized
+#
+#  pandoc file.md -s -o file.html -F \
+#    ~/.vim/plugged/zotcite/python3/zotref.py \
+#    --citeproc -csl ~/Zotero/styles/apa.csl 
