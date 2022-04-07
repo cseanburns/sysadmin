@@ -1,0 +1,17 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+my $email  = "myemail\@uky.edu";
+my $name   = "Sean Burns";
+my $season = "Summer 2022";
+my $rank   = "Associate Professor";
+my $phone  = "859-555-0000";
+
+print($name . "\n");
+print($rank . "\n");
+print($season . "\n\n");
+my $state   = qq/I do not have office hours in the summer./;
+my $contact = qq/Reach me at $email or at $phone./;
+print($state . "\n" . $contact . "\n");
