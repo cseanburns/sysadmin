@@ -3,16 +3,21 @@
 # Date: Tue Oct  5 10:53:01 PM EDT 2021
 # Author: sean
 #
-# Purpose: Prepare SQL files that will create user accounts along with passwords
-# And import them into the Omeka database
+# Purpose: Prepare SQL files that will create user accounts
+# along with passwords, and import them into the Omeka database
 # 
-# First, export roster.xlsx from myUK and export as CSV
-# Save roster.xlsx as a comma separated and quoted text
-# Then run the script in the same directory as the file
+# Prepare Data:
+# 1. Export roster.xlsx from course section in myUK.
+# 2. Open roster.xlsx in spreadsheet program
+#    (e.g., in LibreOffice Calc)
+# 3. Export the xlsx as a CSV file.
+#    a. Be sure to export using comma separated and quoted text
+# 4. Then run this script in the same directory as the CSV file
 #
-# Caveat: This should be resistant to student name variations, but that may need further
-# testing.
-# Be sure to inspect SQL files before importing into MySQL
+# Caveat:
+# 1. This should be resistant to student name variations,
+# but that may need further testing.
+# 2. Be sure to inspect SQL source files before importing into MySQL
 
 roster="roster.csv"
 
@@ -133,8 +138,8 @@ sed -i '1,$ s/$/;/' salts
 /usr/bin/rm userids passes
 
 # Done
-echo "Log into the Omeka database,"
-echo "Select the appropriate database, and run:"
+echo "Log into MySQL."
+echo "Select the Omeka database, and run:"
 echo
 echo "source roster.sql"
 echo "source omeka_passes.sql"
