@@ -29,8 +29,8 @@ passwords to users.
 
 ## Procedure Commands 
 
-Usage: Presume below that the MySQL Omeka database name is *lis602_omeka* and
-the MysQL Omeka username is *lis602_omeka*
+Usage: Presume below that the MySQL Omeka database name is **lis602_omeka** and
+the MysQL Omeka username is **lis602_omeka**.
 
 ```
 $ ./roster2sql.sh
