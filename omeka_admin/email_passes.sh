@@ -8,6 +8,9 @@
 # Assumes a CSV file that looks like this:
 # 
 # name, email, pass, CC
+#
+# Note: I haven't used this yet.
+# Colleagues have wanted to share passes themselves.
 
 while read -r line ; do
   TO=$(echo "$line" | awk -F',' '{print $2}')
