@@ -18,10 +18,6 @@ checkmail() {
 
   # loop through each mailbox in the array and check if there's email in
   # the new/ Maildir
-  #
-  # I commented out the two lines below because I'd rather not have
-  # anything echo if there's nothing to report, but they're useful for
-  # error checking, and so I'll keep them there.
 
   for mail in "${mailboxes[@]}"; do
     if [ -s "$mail"new/ ] ; then
