@@ -3,26 +3,38 @@
 Date: Wed Oct  6 10:14:02 AM EDT 2021
 Author: sean
 
-Problem: The SISED server doesn't have an email setup, but the Omeka installation requires an email set up for creating new accounts. In order to create accounts, my solution was to modify the Omeka MySQL database directly:
+## Problem
 
-1. Remove content from the prior semester, including contributor role accounts.
-    * Use: ``clean_omeka.sql`` on the remote server
-2. Generate the ``roster.sql`` script that creates, defines, and activates the user accounts.
-3. Generate the ``omeka_passes.sql`` script that updates the MySQL table user passwords.
-4. Generate the ``salts.sql`` script that updates the table with the salts for the user passwords.
-    * Use: ``roster2sql.sh`` and send SQL scripts to remote server
+The SISED server doesn't have an email setup, but the Omeka installation
+requires an email set up for creating new accounts. So in order to create
+accounts, my solution was to modify the Omeka MySQL database directly:
+
+## Procedure 
+
+1. Run the ``roster2sql.sh`` Bash script to generate the following three scripts but doesn't run them:
+    * The ``roster.sql`` script will create, define, and activate the Omeka user accounts.
+    * The ``omeka_passes.sql`` script will update the MySQL Omeka table user passwords.
+    * The ``salts.sql`` script will update the Omeka table with the salts for the user passwords.
+1. Then login to the MySQL prompt, select the Omeka database, and clear out the
+   database of past users and content with this script:
+    * ``clean_omeka.sql``
 5. If requested by the instructor of the course, batch email the temporary passwords to users.
     * Use: ``email_passes.sh``
 
 
-## Import into MySQL
+## Procedure Commands 
 
-Example usage:
+Usage: Presume below that the MySQL Omeka database name is *lis602_omeka* and
+the MysQL Omeka username is *lis602_omeka*
 
 ```
-$ mysql -u database_name -p
+$ ./roster2sql.sh
+$ mysql -u lis602_omeka -p
 mysql> use lis602_omeka;
+mysql> source clean_omeka.sql 
 mysql> source roster.sql
+mysql> source omeka_passes.sql
+mysql> source salts.sql
 ```
 
 ## Bugs / TODO
