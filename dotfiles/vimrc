@@ -39,23 +39,38 @@ Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " UI
-syntax off
-"colorscheme maroloccio
+syntax on
+colorscheme maroloccio
 "colorscheme torte
+   
+" Change cursor
+" https://stackoverflow.com/questions/6488683/how-to-change-the-cursor-between-normal-and-insert-modes-in-vim/42118416#42118416
+" 0 = blinking block
+" 1 = blinking block (default)
+" 2 = steady block
+" 3 = blinking underline
+" 4 = steady underline
+" 5 = blinking bar (xterm)
+" 6 = steady bar (xterm)
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
 
-" Set the color of the tilde and other non text characters
-" setting here to NONE so that it reflects the terminal color settings
-highlight NonText ctermfg=NONE
-highlight LineNr ctermfg=NONE ctermfg=Cyan
-highlight Cursor ctermfg=NONE ctermfg=Cyan
-highlight MatchParen ctermfg=NONE ctermfg=Cyan
-
-" The following three lines set the highlight for set spell:
-hi clear SpellBad
-hi SpellCap cterm=underline,bold ctermfg=Cyan ctermbg=Black
-hi SpellBad cterm=underline,bold ctermfg=Cyan ctermbg=Black
-hi SpellLocal cterm=underline,bold ctermfg=Cyan ctermbg=Black
-hi SpellRare cterm=underline,bold ctermfg=Cyan ctermbg=Black
+augroup colors
+  autocmd!
+" change tilde, line numbers, cursor, and matching parens colors
+  autocmd ColorScheme * hi NonText ctermfg=NONE
+  autocmd ColorScheme * hi LineNr ctermfg=Cyan
+  autocmd ColorScheme * hi Cursor ctermfg=Cyan
+  autocmd ColorScheme * hi MatchParen ctermfg=Cyan
+  " change spelling colors
+  autocmd ColorScheme * hi clear SpellBad
+  autocmd ColorScheme * hi SpellCap cterm=underline,bold ctermfg=Cyan ctermbg=Black
+  autocmd ColorScheme * hi SpellBad cterm=underline,bold ctermfg=Cyan ctermbg=Black
+  autocmd ColorScheme * hi SpellLocal cterm=underline,bold ctermfg=Cyan ctermbg=Black
+  autocmd ColorScheme * hi SpellRare cterm=underline,bold ctermfg=Cyan ctermbg=Black
+  " change search term colors
+  autocmd ColorScheme * hi Search cterm=underline,bold ctermfg=Cyan ctermbg=Black
+augroup END
 
 " Tab completion
 set wildmenu
@@ -73,8 +88,6 @@ set magic
 set hlsearch
 " remove highlights with spacebar
 :noremap <silent> <Space> :silent noh<Bar>echo<CR>
-" change highlight for searched terms
-hi Search cterm=underline,bold ctermfg=Cyan ctermbg=Black
 
 set lazyredraw
 set noerrorbells visualbell t_vb=           " Disable annoying error noises
@@ -172,18 +185,3 @@ packadd! matchit
 let g:netrw_liststyle = 3 " tree listing (pree i to switch modes)
 let g:netrw_altv = 1 " opens directory vertically and narrow 
 let g:netrw_winsize = 30 " controls size of netwr window
-
-"ab alise Association for Library and Information Science Education
-"ab asist Association of Information Science & Technology
-"ab uk University of Kentucky
-"ab cci College of Communication and Information
-"ab sis School of Information Science
-ab javascript JavaScript
-"ab cp <code><pre>
-"ab cpp </pre></code>
-"ab ul <ul>
-"ab ull </ul>
-"ab li <li>
-"ab lii </li>
-"ab lt &lt;
-"ab gt &gt;
