@@ -1,0 +1,17 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+print("Sean Burns, PhD\n");
+print("Associate Professor\n");
+print("sean.burns\@uky.edu\n");
+print("Fall 2022\n\n");
+
+if((localtime)[6] == 3) {
+  print("Wed hours are 1-3pm.\n")
+}elsif((localtime)[6] == 5) {
+  print("Fri hours are 1-3pm.\n")
+}else{
+  print("No office hours today.\n");
+}

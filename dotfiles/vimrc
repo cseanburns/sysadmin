@@ -2,8 +2,10 @@
 
 set nocompatible
 filetype off
-let mapleader=","                           " set mapleader to comma
-set nomodeline                              " hide mode
+" Set mapleader to comma
+let mapleader=","
+" hide mode
+set nomodeline
 
 " reload .vimrc
 noremap <silent> <F5> :source ~/.vimrc
@@ -15,53 +17,79 @@ noremap <silent> <F7> g<C-G>
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
 
-" For CSS
-Plug 'ap/vim-css-color'
-
 " For R integration
 Plug 'jalvesaq/Nvim-R'
 Plug 'gaalcaras/ncm-R'
 
-" Code commenting
-Plug 'tpope/vim-commentary'
-
-" For Git
-"Plug 'airblade/vim-gitgutter'
-
 " For writing
 " Center writing screen
 Plug 'junegunn/goyo.vim'        
-" Highlights line
-Plug 'junegunn/limelight.vim'   
-Plug 'reedes/vim-pencil'
-Plug 'reedes/vim-wordy'
+Plug 'preservim/vim-pencil'
+Plug 'preservim/vim-wordy'
 Plug 'godlygeek/tabular'
 Plug 'Ron89/thesaurus_query.vim' 
+
 " Zotero integration
 Plug 'jalvesaq/zotcite'         
+
+" Notes etc
+Plug 'vimwiki/vimwiki'
 
 " Initialize plugin system
 call plug#end()
 
-" For vim-gitgutter
-"set updatetime=100
-
 " UI
 syntax on
-set background=dark " set to dark for most other colorschemes
-set path+=**
+colorscheme maroloccio
+"colorscheme torte
+   
+" Change cursor
+" https://stackoverflow.com/questions/6488683/how-to-change-the-cursor-between-normal-and-insert-modes-in-vim/42118416#42118416
+" 0 = blinking block
+" 1 = blinking block (default)
+" 2 = steady block
+" 3 = blinking underline
+" 4 = steady underline
+" 5 = blinking bar (xterm)
+" 6 = steady bar (xterm)
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+augroup colors
+  autocmd!
+" change tilde, line numbers, cursor, and matching parens colors
+  autocmd ColorScheme * hi NonText ctermfg=NONE
+  autocmd ColorScheme * hi LineNr ctermfg=Cyan
+  autocmd ColorScheme * hi Cursor ctermfg=Cyan
+  autocmd ColorScheme * hi MatchParen ctermfg=Cyan
+  " change spelling colors
+  autocmd ColorScheme * hi clear SpellBad
+  autocmd ColorScheme * hi SpellCap cterm=underline,bold ctermfg=Cyan ctermbg=Black
+  autocmd ColorScheme * hi SpellBad cterm=underline,bold ctermfg=Cyan ctermbg=Black
+  autocmd ColorScheme * hi SpellLocal cterm=underline,bold ctermfg=Cyan ctermbg=Black
+  autocmd ColorScheme * hi SpellRare cterm=underline,bold ctermfg=Cyan ctermbg=Black
+  " change search term colors
+  autocmd ColorScheme * hi Search cterm=underline,bold ctermfg=Cyan ctermbg=Black
+augroup END
+
+" Tab completion
 set wildmenu
 set wildmode=list:longest,full
+
+" Make backpace modern 
 set backspace=indent,eol,start
+
+" Search configurations
 set ignorecase
 set smartcase
+set incsearch
+set showmatch
+set magic
 set hlsearch
 " remove highlights with spacebar
 :noremap <silent> <Space> :silent noh<Bar>echo<CR>
-set incsearch
+
 set lazyredraw
-set magic
-set showmatch                               " highlight matching [{()}]
 set noerrorbells visualbell t_vb=           " Disable annoying error noises
 set number                                  " set line numbers
 set shortmess+=I                            " disable startup message
@@ -69,20 +97,24 @@ set splitbelow                              " open new vertical splits bottom
 set splitright                              " open new horizontal splits right
 set textwidth=79
 set autoindent
+set nofoldenable                            " disable automatic folding
+
 set expandtab
 set smarttab
 set tabstop=2
 set shiftwidth=2 softtabstop=2
+
 set nojoinspaces
-set showcmd                                 " show command in bottom bar
+
+" show command in bottom bar
+set showcmd
+
+" open help in new tab instead of in current buffer
+cabbrev help tab help
+
 "set relativenumber                         " set relative numbering
 "set scrolloff=12                           " Keep cursor near middle of screen
 "set cursorline                             " highlight cursor line
-let g:limelight_conceal_ctermfg = 'gray'    " to fix colorscheme
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
-autocmd! User GoyoEnter set nocursorline    " disable cursorline in Goyo
-let g:goyo_width = 60
 
 " Text 
 set encoding=utf-8                          " set encoding to utf-8
@@ -112,6 +144,10 @@ noremap <C-t> <C-w><C-r>
 
 " Move to other pane
 nnoremap <C-d> <C-W>w
+nnoremap <C-j> <C-W><C-j> " down
+nnoremap <C-k> <C-W><C-k> " up
+nnoremap <C-l> <C-W><C-l> " right
+nnoremap <C-h> <C-W><C-h> " left
 
 " Omnicompletion (e.g., ZotCite)
 filetype plugin on
@@ -129,21 +165,23 @@ let R_objbr_place = "RIGHT"
 let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
 augroup pencil
   autocmd!
-  autocmd FileType md,markdown,mkd call pencil#init()
+  "autocmd FileType md,markdown,mkd call pencil#init()
   autocmd FileType xml,html        call pencil#init()
   autocmd BufNewFile,BufRead /var/tmp/mutt* call pencil#init()
+  autocmd BufNewFile,BufRead todo.txt call pencil#init()
   autocmd FileType text            call pencil#init({'wrap': 'hard'})
 augroup END
 
 " Activate Goyo and Pencil with F12
 noremap <F12> :Goyo <bar> :TogglePencil <CR>
+" Goyo configurations
+let g:goyo_width = 100
 
 " Use % to jump to matches
 " documentation: https://github.com/chrisbra/matchit/blob/master/doc/matchit.txt
 packadd! matchit
 
-ab alise Association for Library and Information Science Education
-ab asist Association of Information Science & Technology
-ab uk University of Kentucky
-ab cci College of Communication and Information
-ab sis School of Information Science
+" netrw
+let g:netrw_liststyle = 3 " tree listing (pree i to switch modes)
+let g:netrw_altv = 1 " opens directory vertically and narrow 
+let g:netrw_winsize = 30 " controls size of netwr window

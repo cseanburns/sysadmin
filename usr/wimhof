@@ -46,13 +46,13 @@ def take_input():
 
     parser = argparse.ArgumentParser(description = "Practice the Wim Hof Breathing Method")
     parser.add_argument("short_breaths",
-            help = "Number of short breaths (standard 30).",
+            help = "Number of short breaths (suggest 30).",
             type = int)
     parser.add_argument("long_breaths",
-            help = "Duration of long breath hold (standard 190).",
+            help = "Duration of long breath hold (suggest 90).",
             type = int)
     parser.add_argument("total_rounds",
-            help = "Total number of rounds (standard 3).",
+            help = "Total number of rounds (suggest 3).",
             type = int)
     args = parser.parse_args()
     return args
