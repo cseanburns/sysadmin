@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+# Date: Wed Oct  5 12:02:23 AM EDT 2022
+# Prepare the american-english word list 
+
+pre_count() {
+    cp /usr/share/dict/american-english "$PWD"
+    declare -gi wc_before
+    wc_before=$(wc -l < american-english)
+}
+
+transform() {
+    # make lowercase 
+    # remove possessives in the form of 's
+    # keep only words with four or more characters
+    # remove non-ascii vowels
+    # remove words ending with es
+    # remove words ending with most consonants and s
+    # remove words with apostrophes
+    sed -i 's/.*/\L&/' american-english
+    sed -i "s/'s//g" american-english
+    sed -Eni '/[a-z-]{4,}/p' american-english
+    sed -Ei '/[áéêíøóöñúü]/d' american-english
+    sed -i '/\b.*es$/d' american-english
+    sed -Ei '/[bcdfghjklmnpqrtvwxyz]s$/d' american-english
+    sed -Ei "/[a-z]'[a-z]/d" american-english
+    sort american-english | uniq > ae
+    mv ae american-english
+}
+
+post_count() {
+    declare -gi wc_after
+    wc_after=$(wc -l < american-english)
+}
+
+get_count() {
+    printf "Starting with this many words:\t %10s\n" "${wc_before}"
+    printf "Ending with this many words:\t %10s\n" "${wc_after}"
+    printf "Total number of words removed:\t %10s\n" "$((wc_before - wc_after))"
+}
+
+main() {
+    pre_count
+    transform
+    post_count
+    get_count
+}
+
+main
+
