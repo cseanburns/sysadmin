@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Thu Sep 22 09:21:37 AM EDT 2022
+# Enter the total of students present
+# Print a random student from that total
+
+printf "How many students are present today?\n\n"
+
+declare -i total
+read -r total
+
+printf "\n"
+
+output=$(( RANDOM % "${total}" + 1 ))
+
+printf "%s\n" "Student number ${output} is selected."
