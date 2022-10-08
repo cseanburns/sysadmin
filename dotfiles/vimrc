@@ -1,159 +1,85 @@
-" Vim config
-
 set nocompatible
-filetype off
-" Set mapleader to comma
-let mapleader=","
-" hide mode
-set nomodeline
-
-" reload .vimrc
-noremap <silent> <F5> :source ~/.vimrc
-
-" do a word count
-noremap <silent> <F7> g<C-G>
-
-" Load plugins using vim-plug
-" https://github.com/junegunn/vim-plug
-call plug#begin('~/.vim/plugged')
-
-" For R integration
-Plug 'jalvesaq/Nvim-R'
-Plug 'gaalcaras/ncm-R'
-
-" For writing
-" Center writing screen
-Plug 'junegunn/goyo.vim'        
-Plug 'preservim/vim-pencil'
-Plug 'preservim/vim-wordy'
-Plug 'godlygeek/tabular'
-Plug 'Ron89/thesaurus_query.vim' 
-
-" Zotero integration
-Plug 'jalvesaq/zotcite'         
-
-" Notes etc
-Plug 'vimwiki/vimwiki'
-
-" Initialize plugin system
-call plug#end()
-
-" UI
-syntax on
-colorscheme maroloccio
-"colorscheme torte
-   
-" Change cursor
-" https://stackoverflow.com/questions/6488683/how-to-change-the-cursor-between-normal-and-insert-modes-in-vim/42118416#42118416
-" 0 = blinking block
-" 1 = blinking block (default)
-" 2 = steady block
-" 3 = blinking underline
-" 4 = steady underline
-" 5 = blinking bar (xterm)
-" 6 = steady bar (xterm)
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
-
-augroup colors
-  autocmd!
-" change tilde, line numbers, cursor, and matching parens colors
-  autocmd ColorScheme * hi NonText ctermfg=NONE
-  autocmd ColorScheme * hi LineNr ctermfg=Cyan
-  autocmd ColorScheme * hi Cursor ctermfg=Cyan
-  autocmd ColorScheme * hi MatchParen ctermfg=Cyan
-  " change spelling colors
-  autocmd ColorScheme * hi clear SpellBad
-  autocmd ColorScheme * hi SpellCap cterm=underline,bold ctermfg=Cyan ctermbg=Black
-  autocmd ColorScheme * hi SpellBad cterm=underline,bold ctermfg=Cyan ctermbg=Black
-  autocmd ColorScheme * hi SpellLocal cterm=underline,bold ctermfg=Cyan ctermbg=Black
-  autocmd ColorScheme * hi SpellRare cterm=underline,bold ctermfg=Cyan ctermbg=Black
-  " change search term colors
-  autocmd ColorScheme * hi Search cterm=underline,bold ctermfg=Cyan ctermbg=Black
-augroup END
-
-" Tab completion
-set wildmenu
-set wildmode=list:longest,full
-
-" Make backpace modern 
-set backspace=indent,eol,start
-
-" Search configurations
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set autoindent
+set number
 set ignorecase
 set smartcase
 set incsearch
+set nohlsearch
+set hidden
+set noerrorbells visualbell t_vb=
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set encoding=utf-8
+set nospell
+setlocal spelllang=en_us
+set spellfile=~/.vim/spellfile.add
+set scrolloff=6
+set wildmenu
+set wildmode=list:longest,full
 set showmatch
 set magic
-set hlsearch
-" remove highlights with spacebar
-:noremap <silent> <Space> :silent noh<Bar>echo<CR>
-
-set lazyredraw
-set noerrorbells visualbell t_vb=           " Disable annoying error noises
-set number                                  " set line numbers
-set shortmess+=I                            " disable startup message
-set splitbelow                              " open new vertical splits bottom
-set splitright                              " open new horizontal splits right
-set textwidth=79
-set autoindent
-set nofoldenable                            " disable automatic folding
-
-set expandtab
-set smarttab
-set tabstop=2
-set shiftwidth=2 softtabstop=2
-
+set shortmess+=Is
+set noequalalways
+set splitbelow
+set splitright
+set nofoldenable
 set nojoinspaces
-
-" show command in bottom bar
-set showcmd
-
-" open help in new tab instead of in current buffer
+set background=dark
+set t_Co=256
+set nowrap
+set textwidth=0
+set wrapmargin=0
+hi ColorColumn ctermbg=green
+set cursorline
+hi CursorLine cterm=NONE ctermbg=NONE ctermfg=white
 cabbrev help tab help
+let mapleader=","
 
-"set relativenumber                         " set relative numbering
-"set scrolloff=12                           " Keep cursor near middle of screen
-"set cursorline                             " highlight cursor line
+""" Remappings """
 
-" Text 
-set encoding=utf-8                          " set encoding to utf-8
-set nospell                                 " disable automatic spellcheck 
-setlocal spelllang=en_us                    " set spellcheck language
-set spellfile=~/.vim/spellfile.add          " add custom spellings here
-set thesaurus+=/home/sean/.vim/thesaurii.txt " local thesaurus
-
-" File management
-set backup
-set backupdir=~/.backup
-set directory=~/.backup
-
-" Tabbed Vim
-noremap <leader>tt :tabnew<cr>
-noremap <leader>tc :tabclose<cr>
-noremap <leader>tm :tabmove
-noremap <leader>tn :tabnext<cr>
-noremap <leader>tp :tabprevious<cr>
-
-" Split vertical if horizontal
-noremap <C-l> <C-W>L
-" Split horizontal if vertical
-noremap <C-j> <C-W>J
-" Rotate splits
-noremap <C-t> <C-w><C-r>
-
-" Move to other pane
+" source ~/.vimrc
+nnoremap <silent> <F5> :source ~/.vimrc
+" quick wordcount
+nnoremap <silent> <F7> g<C-G>
+" tab management
+nnoremap <leader>tt :tabnew<cr>
+nnoremap <leader>tc :tabclose<cr>
+nnoremap <leader>tm :tabmove
+nnoremap <leader>tn :tabnext<cr>
+nnoremap <leader>tp :tabprevious<cr>
+" splits
+nnoremap <C-t> <C-w><C-r> " rotate splits
 nnoremap <C-d> <C-W>w
 nnoremap <C-j> <C-W><C-j> " down
 nnoremap <C-k> <C-W><C-k> " up
 nnoremap <C-l> <C-W><C-l> " right
 nnoremap <C-h> <C-W><C-h> " left
 
-" Omnicompletion (e.g., ZotCite)
-filetype plugin on
-set omnifunc=syntaxcomplete#Complete
+""" Plugins """
 
-" ZotCite
+call plug#begin('~/.vim/plugged')
+Plug 'jalvesaq/Nvim-R'
+Plug 'gaalcaras/ncm-R'
+Plug 'junegunn/goyo.vim'
+Plug 'preservim/vim-pencil'
+Plug 'preservim/vim-wordy'
+Plug 'godlygeek/tabular'
+Plug 'Ron89/thesaurus_query.vim'
+Plug 'jalvesaq/zotcite'
+Plug 'mbbill/undotree'
+"Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0'}
+call plug#end()
+
+filetype plugin on
+
+" Omnicompletion (e.g., ZotCite)
+set omnifunc=syntaxcomplete#Complete
 let $ZCitationTemplate = '{author}{year}'
 
 " R integration
@@ -162,26 +88,40 @@ let R_editor_w=80
 let R_objbr_place = "RIGHT"
 
 " For Pencil Plugin
+let g:pencil#autoformat = 1             " 0=disable, 1=enable (def)
 let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
+set statusline=%<%f\ %h%m%r%w\ \ %{PencilMode()}\ %=\ col\ %c%V\ \ line\ %l\,%L\ %P
+set rulerformat=%-12.(%l,%c%V%)%{PencilMode()}\ %P
+let g:pencil#mode_indicators = {'hard': '␍', 'auto': 'ª', 'soft': '⤸', 'off': '',}
 augroup pencil
   autocmd!
-  "autocmd FileType md,markdown,mkd call pencil#init()
+  "autocmd FileType md,markdown,mkd call pencil#init({'nowrap': 'hard'})
   autocmd FileType xml,html        call pencil#init()
-  autocmd BufNewFile,BufRead /var/tmp/mutt* call pencil#init()
-  autocmd BufNewFile,BufRead todo.txt call pencil#init()
-  autocmd FileType text            call pencil#init({'wrap': 'hard'})
+  "autocmd BufNewFile,BufRead /var/tmp/mutt* call pencil#init()
+  "autocmd FileType text            call pencil#init({'wrap': 'hard'})
 augroup END
+
+" Activate UndoTree
+nnoremap <F6> :UndotreeToggle<CR>
+if has("persistent_undo")
+   let target_path = expand('~/.vim/undodir')
+
+    " create the directory and any parent directories
+    " if the location does not exist.
+    if !isdirectory(target_path)
+        call mkdir(target_path, "p", 0700)
+    endif
+
+    let &undodir=target_path
+    set undofile
+endif
 
 " Activate Goyo and Pencil with F12
 noremap <F12> :Goyo <bar> :TogglePencil <CR>
 " Goyo configurations
-let g:goyo_width = 100
-
-" Use % to jump to matches
-" documentation: https://github.com/chrisbra/matchit/blob/master/doc/matchit.txt
-packadd! matchit
+let g:goyo_width = 60
 
 " netrw
-let g:netrw_liststyle = 3 " tree listing (pree i to switch modes)
-let g:netrw_altv = 1 " opens directory vertically and narrow 
-let g:netrw_winsize = 30 " controls size of netwr window
+let g:netrw_liststyle = 3   " tree listing (pree i to switch modes)
+let g:netrw_altv = 1        " opens directory vertically and narrow 
+let g:netrw_winsize = 30    " controls size of netwr window
