@@ -7,6 +7,7 @@
 
 total_fac=$(grep "faculty" /etc/group | \
   sed -e 's/:/\n/g' | tail -n1 | sed -e 's/,/\n/g' | wc -l)
+
 printf "\n"
 printf "There are %s faculty or staff accounts.\n" "${total_fac}"
 printf "\n"

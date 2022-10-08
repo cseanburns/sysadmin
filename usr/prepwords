@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Date: Wed Oct  5 12:02:23 AM EDT 2022
-# Prepare the american-english word list 
+# Prepare the american-english word list
 
 pre_count() {
     cp /usr/share/dict/american-english "$PWD"
@@ -10,7 +10,7 @@ pre_count() {
 }
 
 transform() {
-    # make lowercase 
+    # make lowercase
     # remove possessives in the form of 's
     # keep only words with four or more characters
     # remove non-ascii vowels

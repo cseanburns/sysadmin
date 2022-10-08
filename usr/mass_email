@@ -6,17 +6,17 @@
 #
 # USAGE: ./mass_email
 #       
-# DESCRIPTION: Sends emails to a list of recipients in a CSV file (data.csv) 
-# the contents of a text file (letter.html). Make sure both CSV file and HTML 
-# file are in working directory (currently, the script does not check that they 
+# DESCRIPTION: Sends emails to a list of recipients in a CSV file (data.csv)
+# the contents of a text file (letter.html). Make sure both CSV file and HTML
+# file are in working directory (currently, the script does not check that they
 # exist).
 #
-# The data.csv file contains the following elements. The script can easily be 
+# The data.csv file contains the following elements. The script can easily be
 # adjusted for a different data structure. Current structure:
 #
 # title,name,email,cc_email
 #
-# The letter.html file contains matching variables that are parsed w/ the Bash 
+# The letter.html file contains matching variables that are parsed w/ the Bash
 # script:
 #
 # <p>Dear <<name>>,</p>
@@ -25,10 +25,10 @@
 #
 # REQUIREMENTS: Mutt 1.5.24, SMTP (e.g., msmtp)
 #
-# BUGS: Does not test for existence of files. Data must be formatted in a 
+# BUGS: Does not test for existence of files. Data must be formatted in a
 # specific way.
 #
-# NOTES: See Content-Type comment below, should work for Mutt 1.5.24, but 
+# NOTES: See Content-Type comment below, should work for Mutt 1.5.24, but
 # isn't.
 #
 #=====================================================================

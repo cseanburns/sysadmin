@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
 # Date: 2022-3-14
-# Convert a markdown file into an APA formatted file. 
-# To be used with the Zotcite plugin for Zotero and Vim 
+# Convert a markdown file into an APA formatted file.
+# To be used with the Zotcite plugin for Zotero and Vim
 # Demo: https://cseanburns.net/WWW/my-plain-text-social-science.html
 
 makeapa () {

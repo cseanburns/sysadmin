@@ -48,4 +48,4 @@ printf "\nThere were %s IP blocks for the reporting period.\n" "$total"
 sed -e '1 i\Count,IP,Date' fr2.txt >> final_report.csv
 
 # 2nd clean up
-rm fr1.txt fr2.txt 
+rm fr1.txt fr2.txt

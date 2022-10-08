@@ -17,7 +17,7 @@ printf "\nThey include the following:\n"
 
 printf "\n"
 
-grep "students" /etc/group | 
+grep "students" /etc/group | \
   sed -e 's/:/\n/g' | \
   tail -n1 | \
   sed -e 's/,/\n/g' | \
