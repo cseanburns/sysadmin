@@ -5,7 +5,7 @@
 # Guess a number between 1 and 100
 # Date: Tue 04 Dec 2018 
 ##
-# Todo: 
+# Todo:
 # Ask players if they want to play again
 # Track score history
 # Tell players how many guesses it took to get the correct guess

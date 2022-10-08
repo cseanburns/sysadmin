@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-This is silly way to post my office hours. Print out the code and post it as
-signage outside my office door.
+This is silly way to
+post my office hours.
+Print out the code and
+post it as signage
+outside my office door.
 """
 
 import os

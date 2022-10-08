@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 
-# I remembered this old email puzzle that was passed around about in the
-# mid-aughts, and I thought I'd recreated it for the kids
-# steps based on those reported here: http://www.murderousmaths.co.uk/games/choc/agebychoc.htm
+# I remembered this old email puzzle that
+# was passed around about in the mid-aughts
+# and recreated it for the kids.
+# The steps based on those reported here:
+# http://www.murderousmaths.co.uk/games/choc/agebychoc.htm
 
 # Date: Sun Aug 22 09:18:31 PM EDT 2021
 
@@ -55,23 +57,25 @@ def birth():
     while True:
         try:
             birthyear = int(input("What year were you born? "))
-            time.sleep(1)   
+            time.sleep(1)
             if birthyear >= 1922 and birthyear <= 2020:
-                return birthyear 
+                return birthyear
             else:
                 print("Must be a four digit number from 1922 to 2020. Try again.")
         except (ValueError):
             print("Must be a four digit number from 1922 to 2020. Try again.")
 
 def the_year():
-    # just set the current year
+    # set the current year
     new_line = '\n'
     year = datetime.datetime.today().year
     return year
 
 def had_birthday():
-    # ask if had birthday and then perform steps based on current year and if
-    # had birthday
+    # ask if had birthday and
+    # then perform steps based
+    # on current year and
+    # if had birthday
     new_line = '\n'
     chocolates = first_steps()
     year = the_year()
