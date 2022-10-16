@@ -6,17 +6,14 @@
 # Date: Tue 04 Dec 2018 
 ##
 # Todo: 
-# Track score history
-# Tell players how many guesses it took to get the correct guess
-# Generate a plot (gnuplot maybe?) plotting each random number as they play
+# Generate stats and a plot (gnuplot maybe?)
+# that plots the correct number and all guesses
 
 # ``man 5 terminfo`` for setaf values/colors
 red=$(tput setaf 1)
 green=$(tput setaf 2)
 cyan=$(tput setaf 6)
 end=$(tput sgr0)
-
-declare -i secretnumber=$((1 + RANDOM % 100))
 
 play_game() {
   printf "Do you want to play guess the number? y/n\n"
@@ -36,24 +33,40 @@ play_game() {
 }
 
 the_game() {
+  declare -i secretnumber=$((1 + RANDOM % 100))
   guessnumber=0
   until [ "${secretnumber}" -eq "${guessnumber}" ]
   do
     printf "Your guess?\n"
     declare -i guessnumber
-    read -r guessnumber
-    if [ "${guessnumber}" -gt "${secretnumber}" ] ; then
+    read -ra guessnumber
+    guess_list+=("${guessnumber[@]}")
+    if [ "${guessnumber[-1]}" -gt "${secretnumber}" ] ; then
       printf "%s\n" "${red}Your number is too big. Try again.${end}"
-    elif [ "${guessnumber}" -lt "${secretnumber}" ] ; then
+    elif [ "${guessnumber[-1]}" -lt "${secretnumber}" ] ; then
       printf "%s\n" "${green}Your number is too low. Try again.${end}"
     fi
   done
   printf "%s\n" "${cyan}Very good!${end}"
+  printf "%s\n"\
+    "${cyan}You guessed ${#guess_list[@]} numbers:${end} " \
+    "${guess_list[@]}"
+  record_scores
+  declare -a guess_list=()
   play_again
 }
 
+record_scores() {
+  {
+  echo "DATE $(date)"
+  echo "BEGIN"
+  for items in "${guess_list[@]}" ; do echo "$items" ; done
+  echo "END"
+  } >> "$HOME/.guess_history"
+}
+
 play_again() {
-  echo "Do you want to play again?"
+  echo "Do you want to play again? y/n"
   read -r decision
   while [ "${decision}" = "y" ]
   do
