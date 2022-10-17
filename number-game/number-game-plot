@@ -1,0 +1,7 @@
+#!/usr/bin/gnuplot
+
+set terminal dumb
+set xrange [105:-5]
+set title "Random Numbers"
+unset key
+plot 'list' using (column(1)):0
