@@ -29,5 +29,5 @@ BEGIN { sum1=0 }
 
 END { print "Sum of all guesses  = " sum1
       print "Ave. correct no.    = " int(sum1 / sum)
-      print int(sum1/sum)>"number-scores"
+      print int(sum1/sum)>>"number-scores"
     }
