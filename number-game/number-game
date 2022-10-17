@@ -62,7 +62,7 @@ record_scores() {
   echo "BEGIN"
   for items in "${guess_list[@]}" ; do echo "$items" ; done
   echo "END"
-  } >> "$HOME/.guess_history"
+  } >> "$PWD/guess_history"
 }
 
 show_scores() {
