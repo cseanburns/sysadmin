@@ -1,0 +1,31 @@
+#!/usr/bin/gawk -f
+
+# Get count of games
+BEGIN { count=0 }
+
+{
+  if ($0 ~ /BEGIN/) count++
+}
+
+END { print "No. of games played = " count}
+
+# Get number of lines
+BEGIN { sum=0 }
+
+{
+  if ($0 ~ /^[0-9]/) sum+=1
+}
+
+END { print "Ttl. guesses        = " sum
+      print "Avg. guesses / game = " sum / count }
+
+# Get sum
+BEGIN { sum1=0 }
+
+{
+ if ($0 ~ /^[0-9]/)
+   sum1+=$1
+}
+
+END { print "Sum of all guesses  = " sum1
+      print "Ave. correct no.    = " int(sum1 / sum) }
