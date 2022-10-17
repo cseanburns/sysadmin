@@ -1,7 +1,7 @@
 #!/usr/bin/gnuplot
 
 set terminal dumb
-set yrange [0:]
+#set yrange [0:20]
 set xrange [105:-5]
 set title "Random Numbers"
 unset key
