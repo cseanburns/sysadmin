@@ -65,13 +65,18 @@ record_scores() {
   } >> "$HOME/.guess_history"
 }
 
+show_scores() {
+  "$PWD"/number-game-stats "$HOME/.guess_history"
+}
+
 play_again() {
   echo "Do you want to play again? y/n"
   read -r decision
-  while [ "${decision}" = "y" ]
-  do
+  if [ "${decision}" = "y" ] ; then
     the_game
-  done 
+  else
+    show_scores
+  fi
 } 
 
 main() {
