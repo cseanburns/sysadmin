@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+  <html><body>
+
+  <h1>Student Hours</h1>
+  <p>Sean Burns, PhD<br>Associate Professor<br>
+  sean.burns@uky.edu<br>Spring 2023</p>
+
+  <p id="studentHours"></p>
+
+  <script>
+  const days = new Date().getDay(); 
+  let todayInfo;
+
+  if ((days == 2) || (days == 4)) {
+        todayInfo = "<p>Tue/Thu student hours are 9-11am</p>";
+  } else {
+        todayInfo = "<p>No scheduled student hours today.</p>";
+  }
+
+  document.getElementById("studentHours").innerHTML = todayInfo; 
+  </script>
+
+  </body></html>
