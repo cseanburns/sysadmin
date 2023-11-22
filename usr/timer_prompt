@@ -10,37 +10,40 @@ Date: 2021-07-16
 import os
 import time
 
-os.system('clear')
+os.system("clear")
+
 
 def check_input():
-    """ Function to take a positive, whole number
+    """Function to take a positive, whole number
 
     Arg:
         none
 
     Example:
        timer_prompt
-   """
+    """
 
     while True:
         try:
             count_start = int(input("Start number: "))
             if count_start >= 1:
-                os.system('clear')
+                os.system("clear")
                 return count_start
         except ValueError:
             print("Enter whole, positive number. Try again.")
 
+
 def timer():
-    """ Do the countdown """
+    """Do the countdown"""
 
     count_start = check_input()
     for count_start in reversed(range(count_start)):
         print(count_start)
         time.sleep(1)
-        os.system('clear')
+        os.system("clear")
     print("Countdown over.")
 
+
 # Call timer function
-if __name__ == '__main__':
+if __name__ == "__main__":
     timer()
