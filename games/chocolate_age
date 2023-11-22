@@ -9,7 +9,6 @@
 # Date: Sun Aug 22 09:18:31 PM EDT 2021
 
 import os
-import time
 import datetime
 
 os.system('clear')
@@ -31,7 +30,6 @@ def week():
 
 def first_steps():
     # these steps apply regardless of any input from user 
-    new_line = '\n'
     chocolates = week()
     chocolates = 50 * (2 * chocolates + 5)
     return chocolates
@@ -50,14 +48,12 @@ def birth():
 
 def the_year():
     # set the current year
-    new_line = '\n'
     year = datetime.datetime.today().year
     return year
 
 def had_birthday():
     # ask if had birthday and then perform steps based
     # on current year and if had birthday
-    new_line = '\n'
     chocolates = first_steps()
     year = the_year()
 
