@@ -15,12 +15,13 @@ import os
 import random
 from colorama import Fore
 
+
 def playgame():
     """
     Sets a random number, ask player for input, keep guessing until correct.
     """
     # Clear screen
-    os.system('clear')
+    os.system("clear")
 
     # Get a random number
     set_random = random.randrange(1, 100, 1)
@@ -41,19 +42,25 @@ def playgame():
             guess = input(Fore.WHITE + "Guess again: ")
             guess = int(guess)
             if guess == set_random:
-                print(Fore.BLUE + f"Congratulations, your guess of {guess} is correct!\n")
+                print(
+                    Fore.BLUE + f"Congratulations, your guess of {guess} is correct!\n"
+                )
         elif guess < set_random:
             print(Fore.GREEN + f"Your guess of {guess} is too low.\n")
             guess = input(Fore.WHITE + "Guess again: ")
             guess = int(guess)
             if guess == set_random:
-                print(Fore.BLUE + f"Congratulations, your guess of {guess} is correct!\n")
+                print(
+                    Fore.BLUE + f"Congratulations, your guess of {guess} is correct!\n"
+                )
                 print(Fore.WHITE)
         else:
             print(Fore.WHITE + "Game over.")
 
+
 # code below modified from:
 # https://stackoverflow.com/questions/19554982/exit-a-program-conditional-on-input-python-2
+
 
 def playagain():
     """
@@ -70,6 +77,7 @@ def playagain():
         else:
             print(Fore.RED + "Sorry, I don't understand.")
 
+
 def main():
     """
     Play the game.
@@ -77,5 +85,6 @@ def main():
     playgame()
     playagain()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

@@ -11,11 +11,12 @@
 import os
 import datetime
 
-os.system('clear')
+os.system("clear")
+
 
 def week():
     # ask how many chocolates per week they want
-    new_line = '\n'
+    new_line = "\n"
 
     while True:
         try:
@@ -25,14 +26,16 @@ def week():
                 return chocolates
             else:
                 print("Must be a number from 1 to 9. Try again.")
-        except (ValueError):
+        except ValueError:
             print("Must be a number from 1 to 9. Try again.")
 
+
 def first_steps():
-    # these steps apply regardless of any input from user 
+    # these steps apply regardless of any input from user
     chocolates = week()
     chocolates = 50 * (2 * chocolates + 5)
     return chocolates
+
 
 def birth():
     # get birthyear
@@ -43,13 +46,15 @@ def birth():
                 return birthyear
             else:
                 print("Must be a four digit number from 1922 to 2020. Try again.")
-        except (ValueError):
+        except ValueError:
             print("Must be a four digit number from 1922 to 2020. Try again.")
+
 
 def the_year():
     # set the current year
     year = datetime.datetime.today().year
     return year
+
 
 def had_birthday():
     # ask if had birthday and then perform steps based
@@ -68,11 +73,12 @@ def had_birthday():
                 return chocolates
             else:
                 print("Must enter 'y' or 'no'. Try again.")
-        except (SyntaxError):
+        except SyntaxError:
             print("Must enter 'y' or 'no'. Try again.")
 
+
 def completion():
-    new_line = '\n'
+    new_line = "\n"
     chocolates = had_birthday()
     birthyear = birth()
 
@@ -83,5 +89,6 @@ def completion():
     print(chocolates)
     print(f"{new_line}")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     completion()

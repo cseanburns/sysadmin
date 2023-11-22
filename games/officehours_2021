@@ -8,7 +8,7 @@ For Fall 2021
 import os
 from datetime import datetime
 
-DAY = datetime.today().strftime('%a')
+DAY = datetime.today().strftime("%a")
 OFFICE_DAYS = ("Mon", "Tue", "Wed", "Thu", "Fri")
 WEEKEND = ("Sat", "Sun")
 EMAIL = "myemail@uky.edu"

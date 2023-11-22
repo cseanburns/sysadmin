@@ -69,7 +69,7 @@ import sys
 from itertools import product
 from colorama import Fore, Style
 
-os.system('clear')
+os.system("clear")
 
 print("NYTimes Spelling Bee Solver\n")
 
@@ -90,8 +90,9 @@ else:
 
 print(Fore.GREEN + "Wise not to enter more than 9 or 10.\n")
 
+
 def wordlength():
-    """ This function takes as input the n-length of words to form.
+    """This function takes as input the n-length of words to form.
     Input should be an integer from 4 to 8 but not restricted to that.
     """
     print(Style.RESET_ALL + "Enter length of words: ")
@@ -99,8 +100,9 @@ def wordlength():
     repeats = int(repeats)
     return repeats
 
+
 def formwords():
-    """ This function:
+    """This function:
     1. Creates word combinations
     2. Reduces those combinations to those matching the wordlist file
     3. Reduces those combinations matching the wordlist file to those
@@ -113,11 +115,11 @@ def formwords():
 
     result = []
     for i in suggestions:
-        result.append(''.join(i))
+        result.append("".join(i))
 
     # reduce possible word formations to those
     # listed in the dictionary
-    with open('wordlist', 'r') as wordlist:
+    with open("wordlist", "r") as wordlist:
         comparewords = wordlist.read().splitlines()
 
     # reduce words to those with the main letter
@@ -128,13 +130,15 @@ def formwords():
     print(*set(result).intersection(comparewords))
     print("")
 
+
 def main():
-    """ This function allows the script to run as a standalone
+    """This function allows the script to run as a standalone
     program."""
     while True:
         formwords()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
