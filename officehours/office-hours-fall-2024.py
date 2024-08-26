@@ -13,8 +13,8 @@ def office():
 		print("""
 		      No office hours today.
 		      Please schedule an appointment:
-			      EMAIL
-			      PHONE_NUMBER
+			      EMAIL (Replace work email)
+			      PHONE_NUMBER (Replace work number)
 		      """)
 
 office()
