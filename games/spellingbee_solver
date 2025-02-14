@@ -3,64 +3,28 @@
 NYTimes Spelling Bee solver,
 by Sean Burns, April 30, 2020
 
-The Spelling Bee program
-(https://www.nytimes.com/puzzles/spelling-bee)
-is a game to create the
-most words out of a
-set of seven letters,
-one of which,
-the center in the game,
-must be included.
+The Spelling Bee program (https://www.nytimes.com/puzzles/spelling-bee)
+is a game to create the most words out of a set of seven letters, one of which, the center in the game, must be included.
 
-To use this script,
-enter the seven letters
-at the first prompt.
-In the second prompt,
-specify the required,
-center letter.
-In the subsequent prompts,
-choose *n*-letter words to output.
+To use this script, enter the seven letters at the first prompt.
+In the second prompt, specify the required, center letter.
+In the subsequent prompts, choose *n*-letter words to output.
 
-Unless you have a
-particularly powerful processor
-and loads of memory,
-it's wise not to enter too large an *n*.
-My lightweight laptop will
-freeze if *n* is sometimes equal to
-or most certainly when
-it's greater than 9.
+Unless you have a particularly powerful processor and loads of memory, it's wise not to enter too large an *n*.
+My lightweight laptop will freeze if *n* is sometimes equal to or most certainly when it's greater than 9.
 
-The script generates possible
-word formations at *n*-letter words
-and then outputs those words
-that are found in a wordlist
-and that include the center letter.
-The 'wordlist' file in this
-repository is required
-to run this script.
+The script generates possible word formations at *n*-letter words and then outputs those words
+that are found in a wordlist and that include the center letter.
+The 'wordlist' file in this repository is required to run this script.
 
-The 'wordlist' file is
-/usr/share/dict/american-english
-(Debian/Ubuntu).
-That dictionary file was cleaned up
-with Bash
-(punctuation removed, cases lowered, etc)
-and renamed to 'wordlist'.
+The 'wordlist' file is /usr/share/dict/american-english (Debian/Ubuntu).
+That dictionary file was cleaned up with Bash (punctuation removed, cases lowered, etc) and renamed to 'wordlist'.
 It could probably be cleaned up more.
-For example,
-the Spelling Bee only
-counts 4-letter words or
-longer but the wordlist file
-has {1,2,3}-letter words,
-plus non-ascii characters,
-that could be removed or modified.
-Other word lists can be
-substituted as long as there
-is one word per line in the file.
+For example, the Spelling Bee only counts 4-letter words or longer but the wordlist file has {1,2,3}-letter words,
+plus non-ascii characters, that could be removed or modified.
+Other word lists can be substituted as long as there is one word per line in the file.
 
-TODO: Make center letter optional
-so that it could just be an anagram solver
-and not just a NYTimes Spelling Bee solver.
+TODO: Make center letter optional so that it could just be an anagram solver and not just a NYTimes Spelling Bee solver.
 """
 
 import os
@@ -90,7 +54,6 @@ else:
 
 print(Fore.GREEN + "Wise not to enter more than 9 or 10.\n")
 
-
 def wordlength():
     """This function takes as input the n-length of words to form.
     Input should be an integer from 4 to 8 but not restricted to that.
@@ -99,7 +62,6 @@ def wordlength():
     repeats = input()
     repeats = int(repeats)
     return repeats
-
 
 def formwords():
     """This function:
@@ -130,13 +92,11 @@ def formwords():
     print(*set(result).intersection(comparewords))
     print("")
 
-
 def main():
     """This function allows the script to run as a standalone
     program."""
     while True:
         formwords()
-
 
 if __name__ == "__main__":
     try:
@@ -145,12 +105,7 @@ if __name__ == "__main__":
         print("Bye!")
 
 """
-This script is a product
-of COVID-19 quarantine.
-After a long day,
-I didn't want to do any more work,
-watch any more shows, or
-read anything, and
-thought I'd just play
-around with and practice Python.
+This script is a product of COVID-19 quarantine.
+After a long day, I didn't want to do any more work, watch any more shows, or read anything,
+and thought I'd just play around with and practice Python.
 """
